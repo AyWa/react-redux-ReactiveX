@@ -1,0 +1,28 @@
+# Mac OSx shit
+.DS_Store
+**/.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Icon
+ehthumbs.db
+Thumbs.db
+
+#Gradle
+.gradle
+build/
+**/build/
+bin/
+!extra/**
+reports/
+dist/
+
+# Web
+npm-debug.log
+node_modules
+bower_components
+public
+_build
+vendor-bundle.js
+.dll
