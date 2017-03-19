@@ -1,0 +1,81 @@
+---
+extends:
+  - "airbnb"
+
+env:
+  browser: true
+  node: true
+
+parserOptions:
+  ecmaFeatures:
+    experimentalObjectRestSpread: true
+
+globals:
+  require: true
+  d3: true
+  __DEV__: true
+  __PROD__: true
+  __PAYMENT_LIVE__: true
+  __ON_PREM__: true
+
+settings:
+  import/ignore:
+   - \.(scss|less|css)$
+   - node_modules
+
+rules:
+  semi: 0
+  curly:
+    - 2
+    - "all"
+  no-constant-condition: 0
+  func-names: 0
+  no-underscore-dangle: 0
+  object-curly-spacing: 0
+  import/no-unresolved: 0
+  no-multiple-empty-lines: 0
+  no-shadow: 0
+  operator-linebreak: 0
+  arrow-body-style: 0
+  no-confusing-arrow: 0
+  space-infix-ops: 0
+  consistent-return: 0
+  global-require: 0
+  no-control-regex: 0
+  no-nested-ternary: 0
+  eqeqeq: 0
+  new-cap:
+    - 2
+    - capIsNewExceptions: [
+        "Draggable",
+        "Droppable",
+        "DragSource",
+        "Immutable.List",
+        "Immutable.Map",
+        "DragDropContext",
+    ]
+  no-console:
+    - 1
+    - allow: ["warn", "error"]
+  no-use-before-define:
+    - 2
+    - functions: false
+  no-unused-vars:
+    - 2
+    - args: "all"
+      argsIgnorePattern: "_"
+  max-len:
+    - 0
+    - code: 80
+  quotes:
+    - 2
+    - single
+    - avoidEscape: true
+      allowTemplateLiterals: true
+  react/jsx-no-bind: 0
+  react/prop-types: 0
+  react/jsx-filename-extension: 0
+  react/jsx-boolean-value: 0
+  react/no-multi-comp: 0
+  react/prefer-stateless-function: 0
+  react/no-did-mount-set-state: 0
