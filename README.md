@@ -14,7 +14,9 @@ To launch the server serving the front
 `npm run prod`   
 ## General Explain & TODO
 - [ ] Fix some general eslint rules   
+- [ ] Fix the dependencies Dev / normal
 ### BACK(only serve the front) & API(all the http request)   
+- [ ] Fix the webpack config
 - [ ] Ignore the API or not ?  
 - [ ] Find a way to set the adress of the server with webpack or configfile ? like if DEV = localhost:9000 else 198....
 - [ ] If use NodeJS API, Make Isomorphic apps ?
@@ -25,7 +27,8 @@ To launch the server serving the front
 - [ ] Use react-router
 - [ ] Implement some reusable compo like a Navbar etc
 - [ ] Implement React-router example
-- [ ] Implement SCSS (Webpack)
+- [x] Implement SCSS (Webpack)
+- [ ] Implement extract-text-webpack-plugin (Webpack)
 - [ ] Implement dist /image (Webpack)
 - [ ] Utilisation dun framework sass ? fondation ?? without JS ?
 - [ ] Other ?

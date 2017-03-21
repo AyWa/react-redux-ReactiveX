@@ -23,12 +23,12 @@ const frontend = {
     filename: 'frontend.bundle.js',
   },
   resolve: {
-    extensions: ['.js', '.jsx', 'scss']
+    extensions: ['.js', '.jsx', '.scss', '.css']
   },
   module: {
     rules: [
       {
-        test: /\.scss$/,
+        test: /\.(scss|css)$/,
         use: [{
             loader: "style-loader" // creates style nodes from JS strings
         }, {
