@@ -1,7 +1,9 @@
+import { BOOK_SELECTED } from './types'
+
 export default function selectBook(book) {
-  // selectBook is an actioncreator => need to return naction
+  // selectBook is an actionCreator => need to return action
   return {
-    type: 'BOOK_SELECTED',
+    type: BOOK_SELECTED,
     payload: book,
   }
 }
