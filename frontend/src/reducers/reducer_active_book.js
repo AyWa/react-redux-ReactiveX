@@ -1,4 +1,4 @@
-import { BOOK_SELECTED } from '../actions/types'
+import { BOOK_SELECTED } from 'actions/types'
 
 // state argument is not app state only the state this reducer is
 // responsible for

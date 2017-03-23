@@ -33,6 +33,8 @@ rules:
   no-underscore-dangle: 0
   object-curly-spacing: 0
   import/no-unresolved: 0
+  import/extensions: 0
+  import/no-extraneous-dependencies: 0
   no-multiple-empty-lines: 0
   no-shadow: 0
   operator-linebreak: 0

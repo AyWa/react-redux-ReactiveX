@@ -12,22 +12,50 @@ fs.readdirSync('node_modules')
     nodeModules[mod] = 'commonjs ' + mod;
   });
 
-
 const frontend = {
   context: path.resolve(__dirname, './frontend'),
   entry: {
-    app: './index.js',
+    app: './src/index.js',
   },
   output: {
     path: path.resolve(__dirname, './build/frontend'),
     filename: 'frontend.bundle.js',
   },
   resolve: {
+    alias: {
+     images: path.resolve(__dirname, './frontend/images')
+    },
+    modules: [path.resolve(__dirname, "./frontend/src"), "node_modules"],
     extensions: ['.js', '.jsx', '.scss', '.css']
   },
   module: {
     rules: [
       {
+        //  include: defaultIncluded,
+        test: /\.(jpe?g|png|gif|svg)$/i,
+        loaders: [
+         'file-loader?hash=sha512&digest=hex&name=[hash].[ext]',
+         {
+            loader: 'image-webpack-loader',
+            query: {
+              mozjpeg: {
+                progressive: true,
+              },
+              gifsicle: {
+                interlaced: true,
+              },
+              optipng: {
+                optimizationLevel: 7,
+              },
+              pngquant: {
+                quality: '65-90',
+                speed: 4
+              }
+            }
+          }
+         ],
+      },{
+        // include: defaultIncluded,
         test: /\.(scss|css)$/,
         use: [{
             loader: "style-loader" // creates style nodes from JS strings
@@ -57,7 +85,7 @@ const frontend = {
     ]
   },
   plugins: [new HtmlWebpackPlugin({
-    template: 'index_dev.html',
+    template: 'src/index_dev.html',
     favicon: "images/favicon.ico",
     inject: 'body',
   })]

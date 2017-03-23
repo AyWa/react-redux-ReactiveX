@@ -16,19 +16,48 @@ fs.readdirSync('node_modules')
 const frontend = {
   context: path.resolve(__dirname, './frontend'),
   entry: {
-    app: './index.js',
+    app: './src/index.js',
   },
   output: {
     path: path.resolve(__dirname, './build/frontend'),
     filename: 'frontend.bundle.js',
   },
   resolve: {
-    extensions: ['.js', '.jsx', 'scss']
+    alias: {
+     images: path.resolve(__dirname, './frontend/images')
+    },
+    modules: [path.resolve(__dirname, "./frontend/src"), "node_modules"],
+    extensions: ['.js', '.jsx', '.scss', '.css']
   },
   module: {
     rules: [
       {
-        test: /\.scss$/,
+        //  include: defaultIncluded,
+        test: /\.(jpe?g|png|gif|svg)$/i,
+        loaders: [
+         'file-loader?hash=sha512&digest=hex&name=[hash].[ext]',
+         {
+            loader: 'image-webpack-loader',
+            query: {
+              mozjpeg: {
+                progressive: true,
+              },
+              gifsicle: {
+                interlaced: true,
+              },
+              optipng: {
+                optimizationLevel: 7,
+              },
+              pngquant: {
+                quality: '65-90',
+                speed: 4
+              }
+            }
+          }
+         ],
+      },{
+        // include: defaultIncluded,
+        test: /\.(scss|css)$/,
         use: [{
             loader: "style-loader" // creates style nodes from JS strings
         }, {
@@ -56,11 +85,17 @@ const frontend = {
       }
     ]
   },
-  plugins: [new HtmlWebpackPlugin({
-    template: 'index_prod.html',
-    favicon: "images/favicon.ico",
-    inject: 'body',
-  })]
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: 'src/index_prod.html',
+      favicon: "images/favicon.ico",
+      inject: 'body',
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      minimize: true,
+      compress: true,
+    })
+  ]
 }
 const backend = {
   context: path.resolve(__dirname, './backend'),
@@ -96,6 +131,12 @@ const backend = {
       }
     ]
   },
+  plugins: [
+    new webpack.optimize.UglifyJsPlugin({
+      minimize: true,
+      compress: true,
+    })
+  ],
   externals: nodeModules
 };
 
