@@ -17,6 +17,7 @@ To launch the server serving the front
 - [ ] Fix the dependencies Dev / normal
 ### BACK(only serve the front) & API(all the http request)   
 - [ ] Fix the webpack config (serve the production file of react redux etc)
+- [ ] serve gzip file ? nginx ? nodejs ?
 - [ ] Ignore the API or not ?  
 - [ ] Find a way to set the adress of the server with webpack or configfile ? like if DEV = localhost:9000 else 198.... environement plugin ?   
 - [ ] If use NodeJS API, Make Isomorphic apps ?

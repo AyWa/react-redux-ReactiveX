@@ -2,7 +2,7 @@ const path              = require('path');
 const webpack           = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const fs                = require('fs');
-
+const CompressionPlugin = require("compression-webpack-plugin");
 const nodeModules = {};
 fs.readdirSync('node_modules')
   .filter(function(x) {
@@ -94,7 +94,14 @@ const frontend = {
     new webpack.optimize.UglifyJsPlugin({
       minimize: true,
       compress: true,
-    })
+    }),
+    new CompressionPlugin({
+			asset: "[path].gz[query]",
+			algorithm: "gzip",
+			test: /\.(js|html)$/,
+			threshold: 10240,
+			minRatio: 0.8
+		})
   ]
 }
 const backend = {
