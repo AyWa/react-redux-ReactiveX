@@ -31,7 +31,6 @@ const frontend = {
   module: {
     rules: [
       {
-        //  include: defaultIncluded,
         test: /\.(jpe?g|png|gif|svg)$/i,
         loaders: [
          'file-loader?hash=sha512&digest=hex&name=[hash].[ext]',
@@ -55,7 +54,6 @@ const frontend = {
           }
          ],
       },{
-        // include: defaultIncluded,
         test: /\.(scss|css)$/,
         use: [{
             loader: "style-loader" // creates style nodes from JS strings
@@ -84,11 +82,18 @@ const frontend = {
       }
     ]
   },
-  plugins: [new HtmlWebpackPlugin({
-    template: 'src/index_dev.html',
-    favicon: "images/favicon.ico",
-    inject: 'body',
-  })]
+  plugins: [
+    new webpack.DefinePlugin({
+      "process.env": {
+         NODE_ENV: JSON.stringify("development"),
+         __DEV__: JSON.stringify(true),
+       }
+    }),
+    new HtmlWebpackPlugin({
+      template: 'src/index_dev.html',
+      favicon: "images/favicon.ico",
+      inject: 'body',
+    })]
 }
 
 module.exports = [

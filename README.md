@@ -19,7 +19,7 @@ To launch the server serving the front
 - [ ] Fix the webpack config (serve the production file of react redux etc)
 - [ ] serve gzip file ? nginx ? nodejs ?
 - [ ] Ignore the API or not ?  
-- [ ] Find a way to set the adress of the server with webpack or configfile ? like if DEV = localhost:9000 else 198.... environement plugin ?   
+- [x] Find a way to set the adress of the server with webpack or configfile ? like if DEV = localhost:9000 else 198.... environement variable check DefinePlugin
 - [ ] If use NodeJS API, Make Isomorphic apps ?
 - [ ] others ?
 ### FRONT
@@ -34,3 +34,6 @@ To launch the server serving the front
 - [x] Implement dist /image (Webpack)
 - [ ] Utilisation dun framework sass ? fondation ?? without JS ?
 - [ ] Other ?
+### IMPLEMENT test
+- [ ] front test
+- [ ] back test

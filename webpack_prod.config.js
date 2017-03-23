@@ -86,6 +86,12 @@ const frontend = {
     ]
   },
   plugins: [
+    new webpack.DefinePlugin({
+      "process.env": {
+         NODE_ENV: JSON.stringify("production"),
+         __DEV__: JSON.stringify(false),
+       }
+    }),
     new HtmlWebpackPlugin({
       template: 'src/index_prod.html',
       favicon: "images/favicon.ico",
@@ -139,6 +145,12 @@ const backend = {
     ]
   },
   plugins: [
+    new webpack.DefinePlugin({
+      "process.env": {
+         NODE_ENV: JSON.stringify("production"),
+         __DEV__: JSON.stringify(false),
+       }
+    }),
     new webpack.optimize.UglifyJsPlugin({
       minimize: true,
       compress: true,
