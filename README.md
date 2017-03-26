@@ -15,8 +15,9 @@ To launch the server serving the front
 ## General Explain & TODO
 - [ ] Fix some general eslint rules  && and eslint bug on some rules
 - [ ] Fix the dependencies Dev / normal
+- [ ] Fix hot module
 ### BACK(only serve the front) & API(all the http request)   
-- [ ] Fix the webpack config (serve the production file of react redux etc)
+- [x] Fix the webpack config (serve the production file of react redux etc)
 - [ ] serve gzip file ? nginx ? nodejs ?
 - [ ] Ignore the API or not ?  
 - [x] Find a way to set the adress of the server with webpack or configfile ? like if DEV = localhost:9000 else 198.... environement variable check DefinePlugin
@@ -26,7 +27,7 @@ To launch the server serving the front
 - [ ] Use Sagas or RXJS ??? redux-observable
 - [ ] Use Sagas for all the apps SideEffect
 - [ ] Use react-router
-- [ ] Hot module
+- [x] Hot module
 - [ ] Implement some reusable compo like a Navbar etc
 - [ ] Implement React-router example
 - [x] Implement SCSS (Webpack)

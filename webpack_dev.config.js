@@ -103,14 +103,13 @@ const frontend = {
       template: 'src/index_dev.html',
       favicon: "images/favicon.ico",
       inject: 'body',
-    })],
+    })
+  ],
   devServer: {
    host: 'localhost',
    port: 3000,
-
    historyApiFallback: true,
    // respond to 404s with index.html
-
    hot: true,
    // enable HMR on the server
   },
