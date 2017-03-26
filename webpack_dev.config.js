@@ -15,7 +15,10 @@ fs.readdirSync('node_modules')
 const frontend = {
   context: path.resolve(__dirname, './frontend'),
   entry: {
-    app: './src/index.js',
+    'app': [
+      'react-hot-loader/patch',
+      './src/index.js',
+    ]
   },
   output: {
     path: path.resolve(__dirname, './build/frontend'),
@@ -77,12 +80,14 @@ const frontend = {
           presets: [
             'es2015',
             'react'
-          ]
+          ],
+          "plugins": ["react-hot-loader/babel"]
         }
       }
     ]
   },
   plugins: [
+    new webpack.NamedModulesPlugin(),
     new webpack.DefinePlugin({
       "process.env": {
          NODE_ENV: JSON.stringify("development"),

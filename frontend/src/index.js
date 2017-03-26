@@ -1,14 +1,35 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
+import { AppContainer } from 'react-hot-loader'
 import App from './App';
-import reducers from './reducers';
+import {store} from './store'
 
-const createStoreWithMiddleware = applyMiddleware()(createStore);
 
-ReactDOM.render(
-  <Provider store={createStoreWithMiddleware(reducers)}>
-    <App />
-  </Provider>
-, document.querySelector('.container'));
+const render = (Component) => {
+  ReactDOM.render(
+    <AppContainer>
+      <Provider store={store}>
+        <Component />
+      </Provider>
+    </AppContainer>
+  , document.querySelector('.container'));
+}
+
+render(App)
+
+
+// Hot Module Replacement API
+if (module.hot) {
+  module.hot.accept('./App', () => {
+    const NextApp = require('./App').default;
+    ReactDOM.render(
+      <AppContainer>
+        <Provider store={store}>
+          <NextApp />
+        </Provider>
+      </AppContainer>
+      , document.getElementById('.container'),
+    );
+  });
+}
