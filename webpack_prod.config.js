@@ -1,6 +1,7 @@
 const path              = require('path');
 const webpack           = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const fs                = require('fs');
 const CompressionPlugin = require("compression-webpack-plugin");
 const nodeModules = {};
@@ -58,13 +59,11 @@ const frontend = {
       },{
         // include: defaultIncluded,
         test: /\.(scss|css)$/,
-        use: [{
-            loader: "style-loader" // creates style nodes from JS strings
-        }, {
-            loader: "css-loader" // translates CSS into CommonJS
-        }, {
-            loader: "sass-loader" // compiles Sass to CSS
-        }]
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',// creates style nodes from JS strings
+          // translates CSS into CommonJS // compiles Sass to CSS
+          use: ['css-loader', 'sass-loader']
+        })
       },
       {
         enforce: 'pre',
@@ -97,6 +96,7 @@ const frontend = {
       favicon: "images/favicon.ico",
       inject: 'body',
     }),
+    new ExtractTextPlugin("styles.css"),
     new webpack.optimize.UglifyJsPlugin({
       minimize: true,
       compress: true,

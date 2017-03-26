@@ -30,7 +30,7 @@ To launch the server serving the front
 - [ ] Implement some reusable compo like a Navbar etc
 - [ ] Implement React-router example
 - [x] Implement SCSS (Webpack)
-- [ ] Implement extract-text-webpack-plugin (Webpack-prod)
+- [x] Implement extract-text-webpack-plugin (Webpack-prod)
 - [x] Implement dist /image (Webpack)
 - [ ] Utilisation dun framework sass ? fondation ?? without JS ?
 - [ ] Other ?
