@@ -12,6 +12,7 @@ export default class App extends Component {
     return (
       <div className="yolo">
         <BookList />
+        ---
         <BookDetail />
         <img src={yolo} alt="yolo" />
       </div>

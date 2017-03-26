@@ -21,15 +21,5 @@ render(App)
 
 // Hot Module Replacement API
 if (module.hot) {
-  module.hot.accept('./App', () => {
-    const NextApp = require('./App').default;
-    ReactDOM.render(
-      <AppContainer>
-        <Provider store={store}>
-          <NextApp />
-        </Provider>
-      </AppContainer>
-      , document.getElementById('.container'),
-    );
-  });
+  module.hot.accept('./App', () => { render(App) });
 }

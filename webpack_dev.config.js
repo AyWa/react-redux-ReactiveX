@@ -79,13 +79,6 @@ const frontend = {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
-        options: {
-          presets: [
-            'es2015',
-            'react'
-          ],
-          "plugins": ["react-hot-loader/babel"]
-        }
       }
     ]
   },
