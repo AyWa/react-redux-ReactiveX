@@ -8,7 +8,7 @@
   "scripts": {
     "prod": "rm -fr build && node_modules/.bin/webpack --config webpack_prod.config.js && cd build && node backend.bundle.js",
     "build": "rm -fr build && node_modules/.bin/webpack --config webpack_prod.config.js",
-    "dev": "node_modules/.bin/webpack-dev-server --hot --config webpack_dev.config.js"
+    "dev": "node_modules/.bin/webpack-dev-server --config webpack_dev.config.js"
   },
   "devDependencies": {
     "babel-core": "^6.24.0",

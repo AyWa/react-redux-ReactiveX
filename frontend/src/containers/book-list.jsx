@@ -14,12 +14,6 @@ class BookList extends Component {
           <button onClick={_ => this.props.selectBook(book)}>
             {book.title}
           </button>
-          <button onClick={_ => this.props.selectBook(book)}>
-            {book.title}
-          </button>
-          <button onClick={_ => this.props.selectBook(book)}>
-            {book.title}
-          </button>
         </li>
       );
     })
