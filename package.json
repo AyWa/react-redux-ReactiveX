@@ -10,6 +10,15 @@
     "build": "rm -fr build && node_modules/.bin/webpack --config webpack_prod.config.js",
     "dev": "node_modules/.bin/webpack-dev-server --config webpack_dev.config.js"
   },
+  "babel": {
+    "presets": [
+      ["es2015", { "modules": false }],
+      "react"
+    ],
+    "plugins": [
+      "react-hot-loader/babel"
+    ]
+  },
   "devDependencies": {
     "babel-core": "^6.24.0",
     "babel-loader": "^6.4.0",
@@ -27,6 +36,7 @@
     "html-webpack-plugin": "^2.28.0",
     "image-webpack-loader": "^3.2.0",
     "node-sass": "^4.5.0",
+    "react-hot-loader": "next",
     "sass-loader": "^6.0.3",
     "webpack": "^2.2.1"
   },

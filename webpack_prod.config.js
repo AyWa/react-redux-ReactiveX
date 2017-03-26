@@ -30,6 +30,7 @@ const frontend = {
     modules: [path.resolve(__dirname, "./frontend/src"), "node_modules"],
     extensions: ['.js', '.jsx', '.scss', '.css']
   },
+  devtool: 'source-map',
   module: {
     rules: [
       {
