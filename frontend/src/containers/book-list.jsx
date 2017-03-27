@@ -2,15 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import selectBook from 'actions';
+import BookDetail from './book-detail';
 
 class BookList extends Component {
   renderList() {
     return this.props.books.map((book) => {
       return (
-        <li
-          key={book.title}
-          className="list-group-item"
-        >
+        <li key={book.title} className="list-group-item">
           <button onClick={_ => this.props.selectBook(book)}>
             {book.title}
           </button>
@@ -20,9 +18,12 @@ class BookList extends Component {
   }
   render() {
     return (
-      <ul className="list-group col-md-4">
-        {this.renderList()}
-      </ul>
+      <div>
+        <ul className="list-group col-md-4">
+          {this.renderList()}
+        </ul>
+        <BookDetail />
+      </div>
     )
   }
 }
