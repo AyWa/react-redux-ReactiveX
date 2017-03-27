@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { Router, Route, IndexRoute, browserHistory } from 'react-router';
-import BookList from './containers/book-list';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
 import NotFound from './components/errors/404';
 import Container from './components/container';
-import AddBook from './containers/add-book';
 import aa from './utilities/api';
 
 export * from './app.scss';
@@ -13,12 +12,13 @@ export default class App extends Component {
     aa();
     return (
       <div className="yolo">
-        <Router history={browserHistory}>
-          <Route path="/" component={Container}>
-            <IndexRoute component={BookList} />
-            <Route path="/add" component={AddBook} />
-            <Route path="*" component={NotFound} />
-          </Route>
+        <Router>
+          <div>
+            <Switch>
+              <Route path="/" component={Container} />
+              <Route component={NotFound} />
+            </Switch>
+          </div>
         </Router>
       </div>
     );
