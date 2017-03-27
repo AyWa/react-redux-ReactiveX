@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import selectBook from 'actions';
 import BookDetail from './book-detail';
+import image from '../../images/plan.png'
+
 
 class BookList extends Component {
   renderList() {
@@ -23,6 +25,7 @@ class BookList extends Component {
           {this.renderList()}
         </ul>
         <BookDetail />
+        <img src={image} alt="yolo" />
       </div>
     )
   }

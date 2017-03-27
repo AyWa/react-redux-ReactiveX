@@ -6,9 +6,18 @@
   "author": "Marc Hurabielle",
   "license": "MIT",
   "scripts": {
-    "prod": "node_modules/.bin/webpack --config webpack_prod.config.js && cd build && node backend.bundle.js",
-    "build": "node_modules/.bin/webpack --config webpack_prod.config.js",
+    "prod": "rm -fr build && node_modules/.bin/webpack --config webpack_prod.config.js && cd build && node backend.bundle.js",
+    "build": "rm -fr build && node_modules/.bin/webpack --config webpack_prod.config.js",
     "dev": "node_modules/.bin/webpack-dev-server --config webpack_dev.config.js"
+  },
+  "babel": {
+    "presets": [
+      ["es2015", { "modules": false }],
+      "react"
+    ],
+    "plugins": [
+      "react-hot-loader/babel"
+    ]
   },
   "devDependencies": {
     "babel-core": "^6.24.0",
@@ -22,10 +31,12 @@
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-react": "^6.10.0",
+    "extract-text-webpack-plugin": "^2.1.0",
     "file-loader": "^0.10.1",
     "html-webpack-plugin": "^2.28.0",
     "image-webpack-loader": "^3.2.0",
     "node-sass": "^4.5.0",
+    "react-hot-loader": "next",
     "sass-loader": "^6.0.3",
     "webpack": "^2.2.1"
   },

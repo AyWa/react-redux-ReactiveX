@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Router, Route, IndexRoute, hashHistory } from 'react-router';
+import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import BookList from './containers/book-list';
 import NotFound from './components/errors/404';
 import Container from './components/container';
@@ -13,7 +13,7 @@ export default class App extends Component {
     aa();
     return (
       <div className="yolo">
-        <Router history={hashHistory}>
+        <Router history={browserHistory}>
           <Route path="/" component={Container}>
             <IndexRoute component={BookList} />
             <Route path="/add" component={AddBook} />

@@ -15,11 +15,16 @@ fs.readdirSync('node_modules')
 const frontend = {
   context: path.resolve(__dirname, './frontend'),
   entry: {
-    app: './src/index.js',
+    'app': [
+      'react-hot-loader/patch',
+      'webpack-dev-server/client?http://localhost:3000',
+      'webpack/hot/only-dev-server',
+      './src/index.js',
+    ]
   },
   output: {
-    path: path.resolve(__dirname, './build/frontend'),
     filename: 'frontend.bundle.js',
+    path: path.resolve(__dirname, './build/frontend'),
   },
   resolve: {
     alias: {
@@ -28,6 +33,7 @@ const frontend = {
     modules: [path.resolve(__dirname, "./frontend/src"), "node_modules"],
     extensions: ['.js', '.jsx', '.scss', '.css']
   },
+  devtool: 'eval',
   module: {
     rules: [
       {
@@ -73,16 +79,13 @@ const frontend = {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
-        options: {
-          presets: [
-            'es2015',
-            'react'
-          ]
-        }
       }
     ]
   },
   plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NamedModulesPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
     new webpack.DefinePlugin({
       "process.env": {
          NODE_ENV: JSON.stringify("development"),
@@ -93,7 +96,16 @@ const frontend = {
       template: 'src/index_dev.html',
       favicon: "images/favicon.ico",
       inject: 'body',
-    })]
+    })
+  ],
+  devServer: {
+   host: 'localhost',
+   port: 3000,
+   historyApiFallback: true,
+   // respond to 404s with index.html
+   hot: true,
+   // enable HMR on the server
+  },
 }
 
 module.exports = [
