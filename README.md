@@ -24,12 +24,13 @@ To launch the server serving the front
 - [ ] Make Isomorphic apps ?
 - [ ] others ?
 ### FRONT
-- [ ] Use Sagas or RXJS ??? redux-observable
-- [ ] Use Sagas for all the apps SideEffect
-- [ ] Use react-router
+- [ ] redux-observable
+- [ ] Use redux-observable for all the apps SideEffect
 - [x] Hot module
 - [ ] Implement some reusable compo like a Navbar etc
-- [ ] Implement React-router example
+- [x] Implement React-router example
+- [ ] Implement React-redux-router
+- [ ] Implement redux-form
 - [x] Implement SCSS (Webpack)
 - [x] Implement extract-text-webpack-plugin (Webpack-prod)
 - [x] Implement dist /image (Webpack)
