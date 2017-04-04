@@ -1,18 +1,29 @@
 import {
   createStore,
-  // applyMiddleware,
+  applyMiddleware,
 } from 'redux'
+import {
+  routerMiddleware,
+} from 'react-router-redux'
 import rootReducer from 'reducers'
+import createHistory from 'history/createBrowserHistory'
+
+const history = createHistory()
+const middlewares = []
+middlewares.push(routerMiddleware(history))
+
+if (process.env.NODE_ENV === `development`) {
+  const { createLogger } = require(`redux-logger`);
+  middlewares.push(createLogger({collapsed: true}));
+}
+
+
 
 function configureStore(initialState) {
   const store = createStore(
     rootReducer,
     initialState,
-    // applyMiddleware(
-    //   thunk,
-    //   routerMiddleware(history),
-    //   sagaMiddleware
-    // )
+    applyMiddleware(...middlewares),
   )
 
   if (module.hot) {
