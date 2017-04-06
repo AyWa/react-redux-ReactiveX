@@ -8,7 +8,7 @@ import {
 import rootReducer from 'reducers'
 import createHistory from 'history/createBrowserHistory'
 
-const history = createHistory()
+export const history = createHistory()
 const middlewares = []
 middlewares.push(routerMiddleware(history))
 
