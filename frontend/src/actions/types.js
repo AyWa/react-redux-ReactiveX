@@ -1,3 +1,4 @@
 module.exports = {
   BOOK_SELECTED: 'BOOK_SELECTED',
+  BOOK_RESET: 'BOOK_RESET',
 }

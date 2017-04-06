@@ -2,15 +2,16 @@ import {
   createStore,
   applyMiddleware,
 } from 'redux'
-import {
-  routerMiddleware,
-} from 'react-router-redux'
+import {routerMiddleware} from 'react-router-redux'
+import {createEpicMiddleware} from 'redux-observable'
+import rootEpic from 'reducers-observable'
 import rootReducer from 'reducers'
 import createHistory from 'history/createBrowserHistory'
 
 export const history = createHistory()
 const middlewares = []
 middlewares.push(routerMiddleware(history))
+middlewares.push(createEpicMiddleware(rootEpic))
 
 if (process.env.NODE_ENV === `development`) {
   const { createLogger } = require(`redux-logger`);
