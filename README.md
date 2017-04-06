@@ -28,8 +28,9 @@ To launch the server serving the front
 - [ ] Use redux-observable for all the apps SideEffect
 - [x] Hot module
 - [ ] Implement some reusable compo like a Navbar etc
-- [x] Implement React-router example
-- [ ] Implement React-redux-router
+- [x] Implement React-router
+- [x] Implement React-redux-router
+- [ ] Implement React-redux-router Example
 - [ ] Implement redux-form
 - [x] Implement SCSS (Webpack)
 - [x] Implement extract-text-webpack-plugin (Webpack-prod)
