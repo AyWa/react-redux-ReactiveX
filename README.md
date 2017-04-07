@@ -24,7 +24,7 @@ To launch the server serving the front
 - [ ] Make Isomorphic apps ?
 - [ ] others ?
 ### FRONT
-- [ ] redux-observable
+- [x] redux-observable
 - [ ] Use redux-observable for all the apps SideEffect
 - [x] Hot module
 - [ ] Implement some reusable compo like a Navbar etc
