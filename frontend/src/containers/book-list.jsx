@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import selectBook from 'actions';
+import image from 'images/plan.png'
 import BookDetail from './book-detail';
-import image from '../../images/plan.png'
 
 
 class BookList extends Component {

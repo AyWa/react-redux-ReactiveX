@@ -31,7 +31,7 @@ To launch the server serving the front
 - [x] Implement React-router
 - [x] Implement React-redux-router
 - [ ] Implement React-redux-router Example
-- [ ] Implement redux-form
+- [x] Implement redux-form
 - [x] Implement SCSS (Webpack)
 - [x] Implement extract-text-webpack-plugin (Webpack-prod)
 - [x] Implement dist /image (Webpack)
