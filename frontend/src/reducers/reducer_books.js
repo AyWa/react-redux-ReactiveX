@@ -1,3 +1,4 @@
+import {handleActions} from 'redux-actions';
 import {ADD_BOOK} from 'actions/types'
 
 const init = [
@@ -8,10 +9,6 @@ const init = [
   {title: 'Yolo'},
 ]
 
-export default function (state=init, action) {
-  switch (action.type) {
-    case ADD_BOOK:
-      return [...state, {title: action.payload.nameBook}]
-    default : return state;
-  }
-}
+export default handleActions({
+  [ADD_BOOK]: (state, action) => [...state, {title: action.payload.nameBook}],
+}, init)

@@ -1,19 +1,15 @@
-import {
-  BOOK_SELECTED,
-  ADD_BOOK,
-} from './types'
+import _ from 'lodash'
+import {createAction} from 'redux-actions'
+import {dispatch} from 'store'
+import * as types from './types.js'
 
-export default function selectBook(book) {
-  // selectBook is an actionCreator => need to return action
-  return {
-    type: BOOK_SELECTED,
-    payload: book,
+const actions = Object.keys(types).map(key => (
+  {
+    [_.camelCase(key)]: createAction(types[key]),
   }
-}
+)).reduce(_.merge, {})
 
-export const addBook = (newBook) => {
-  return {
-    type: ADD_BOOK,
-    payload: newBook,
-  }
-}
+const lift = funct => args => dispatch(funct(args))
+
+export const selectBook = lift(actions.bookSelected);
+export const addBook = lift(actions.addBook);
