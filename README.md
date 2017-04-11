@@ -1,4 +1,4 @@
-# react-redux-sagas
+# react-redux-ReactiveX
 ## Installation
 Please use yarn   
 `yarn install`   
