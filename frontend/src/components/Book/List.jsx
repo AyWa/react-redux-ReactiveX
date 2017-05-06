@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {selectBook} from 'actions';
-import image from 'images/plan.png'
-import BookDetail from './book-detail';
+import BookDetail from './Detail';
 
 
 class BookList extends Component {
@@ -24,7 +23,6 @@ class BookList extends Component {
           {this.renderList()}
         </ul>
         <BookDetail />
-        <img src={image} alt="yolo" />
       </div>
     )
   }

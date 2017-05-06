@@ -1,8 +1,9 @@
+import 'styles/common.scss'
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { AppContainer } from 'react-hot-loader'
-import App from './App';
+import indexApp from './routes';
 import {store} from './store'
 
 
@@ -16,10 +17,10 @@ const render = (Component) => {
   , document.querySelector('.container'));
 }
 
-render(App)
+render(indexApp)
 
 
 // Hot Module Replacement API
 if (module.hot) {
-  module.hot.accept('./App', () => { render(App) });
+  module.hot.accept('./routes', () => { render(indexApp) });
 }
