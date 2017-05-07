@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import Toggle from 'reusable/UI/Toggle'
 import './navbar.scss'
 
@@ -9,9 +9,14 @@ export default class Nav extends Component {
       <nav className="nav">
         <div className="nav-left">
           <a className="nav-item">
-            <Link className="nav-item" to="/">
+            <NavLink
+              exact
+              activeClassName="is-active"
+              className="nav-item"
+              to="/"
+            >
               ReFast
-            </Link>
+            </NavLink>
             <span className="icon">
               <a rel="noopener noreferrer" target="_blank" href="https://github.com/AyWa/react-redux-ReactiveX">
                 <i className="fa fa-github" />
@@ -29,12 +34,21 @@ export default class Nav extends Component {
           }
         >
           <div className="nav-right nav-menu">
-            <Link className="nav-item" to="/">
+            <NavLink
+              exact
+              activeClassName="is-active"
+              className="nav-item"
+              to="/"
+            >
               Home
-            </Link>
-            <Link className="nav-item" to="/add">
+            </NavLink>
+            <NavLink
+              activeClassName="is-active"
+              className="nav-item"
+              to="/add"
+            >
               Add
-            </Link>
+            </NavLink>
           </div>
         </Toggle>
       </nav>
