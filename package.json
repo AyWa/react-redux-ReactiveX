@@ -18,7 +18,8 @@
           "modules": false
         }
       ],
-      "react"
+      "react",
+      "babel-preset-stage-0"
     ],
     "plugins": [
       "react-hot-loader/babel"
@@ -47,6 +48,7 @@
   },
   "dependencies": {
     "babel-eslint": "^7.1.1",
+    "babel-preset-stage-0": "^6.24.1",
     "bulma": "^0.4.1",
     "css-loader": "^0.27.3",
     "express": "^4.15.2",

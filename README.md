@@ -35,7 +35,7 @@ To launch the server serving the front
 - [x] Implement SCSS (Webpack)
 - [x] Implement extract-text-webpack-plugin (Webpack-prod)
 - [x] Implement dist /image (Webpack)
-- [ ] Utilisation dun framework sass ? fondation ?? without JS ?
+- [x] framework scss: http://bulma.io/
 - [ ] Other ?
 ### IMPLEMENT test
 - [ ] front test
