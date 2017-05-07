@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import Button from 'reusable/UI/Button'
+import {InputField} from 'reusable/UI/Input'
 
 const validate = (values) => {
   const errors = {}
@@ -18,15 +19,29 @@ const warn = (values) => {
   return warnings
 }
 
-const renderField = ({ input, label, type, meta: { touched, error, warning } }) => (
-  <div>
-    <label htmlFor={label}>{label}</label>
-    <div>
-      <input {...input} placeholder={label} type={type} />
-      {touched && ((error && <span>{error}</span>) || (warning && <span>{warning}</span>))}
-    </div>
-  </div>
-)
+const renderField = (props) => {
+  // const {
+  //   input,
+  //   label,
+  //   type,
+  //   meta: {
+  //     touched,
+  //     error,
+  //     warning,
+  //   },
+  // } = props
+  // console.log(props);
+  return (
+    <InputField {...props} />
+    // <div>
+    //   <label htmlFor={label}>{label}</label>
+    //   <div>
+    //     <Input {...input} placeholder={label} type={type} />
+    //     {touched && ((error && <span>{error}</span>) || (warning && <span>{warning}</span>))}
+    //   </div>
+    // </div>
+  )
+}
 
 class AddBookForm extends Component {
   render() {

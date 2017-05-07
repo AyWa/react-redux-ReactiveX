@@ -8,7 +8,7 @@ export default class Nav extends Component {
     return (
       <nav className="nav">
         <div className="nav-left">
-          <a className="nav-item">
+          <span className="nav-item">
             <NavLink
               exact
               activeClassName="is-active"
@@ -22,7 +22,7 @@ export default class Nav extends Component {
                 <i className="fa fa-github" />
               </a>
             </span>
-          </a>
+          </span>
         </div>
         <Toggle
           toggler={
