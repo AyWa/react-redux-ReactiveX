@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
+import Button from 'reusable/UI/Button'
 
 const validate = (values) => {
   const errors = {}
@@ -37,7 +38,7 @@ class AddBookForm extends Component {
       <form onSubmit={handleSubmit(onFormSubmit)}>
         <h3>Add a book</h3>
         <Field name="nameBook" component={renderField} type="text" label="nameBook" />
-        <button type="submit">Submit</button>
+        <Button type="submit" title="Submit" />
       </form>
     );
   }
