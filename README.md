@@ -27,10 +27,10 @@ To launch the server serving the front
 - [x] redux-observable
 - [ ] Use redux-observable for all the apps SideEffect
 - [x] Hot module
-- [ ] Implement some reusable compo like a Navbar etc
+- [x] Implement some reusable compo like a Navbar etc
 - [x] Implement React-router
 - [x] Implement React-redux-router
-- [ ] Implement React-redux-router Example
+- [x] Implement React-redux-router Example
 - [x] Implement redux-form
 - [x] Implement SCSS (Webpack)
 - [x] Implement extract-text-webpack-plugin (Webpack-prod)
@@ -38,5 +38,5 @@ To launch the server serving the front
 - [x] framework scss: http://bulma.io/
 - [ ] Other ?
 ### IMPLEMENT test
-- [ ] front test
+- [x] front test
 - [ ] back test
