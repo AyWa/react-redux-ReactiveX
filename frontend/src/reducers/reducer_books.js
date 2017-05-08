@@ -1,7 +1,7 @@
 import {handleActions} from 'redux-actions';
 import {ADD_BOOK} from 'actions/types'
 
-const init = [
+export const initialState = [
   {title: 'Javascript'},
   {title: 'Harry Potter'},
   {title: 'The dark Tower'},
@@ -11,4 +11,4 @@ const init = [
 
 export default handleActions({
   [ADD_BOOK]: (state, action) => [...state, {title: action.payload.nameBook}],
-}, init)
+}, initialState)
