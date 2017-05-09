@@ -13,15 +13,13 @@ To build
 To launch the server serving the front   
 `npm run prod`   
 ## General Explain & TODO
-- [ ] Fix some general eslint rules  && and eslint bug on some rules
 - [ ] Fix the dependencies Dev / normal
 - [x] Fix hot module
 ### BACK(only serve the front) & API(all the http request)   
 - [ ] make docker image to deploy
   - [ ] nginx
   - [ ] front
-- [ ] switch to koa
-- [ ] use koa-prerender
+- [ ] use node-prerender
 - [ ] Make Isomorphic apps ?
 - [x] set your api adress in frontend/src/api/config
 - [ ] others ?

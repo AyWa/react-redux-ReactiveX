@@ -81,6 +81,7 @@ const frontend = {
       "process.env": {
          NODE_ENV: JSON.stringify("production"),
          __DEV__: JSON.stringify(false),
+         __API__: "192.0000000",
        }
     }),
     new HtmlWebpackPlugin({
@@ -123,16 +124,6 @@ const backend = {
         test: /\.js$/,
         exclude: /node_modules/,
         loader: 'eslint-loader',
-      },
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loader: 'babel-loader',
-        options: {
-          presets: [
-            'es2015'
-          ]
-        }
       }
     ]
   },
@@ -143,10 +134,6 @@ const backend = {
          __DEV__: JSON.stringify(false),
        }
     }),
-    new webpack.optimize.UglifyJsPlugin({
-      minimize: true,
-      compress: true,
-    })
   ],
 };
 
