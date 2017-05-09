@@ -15,8 +15,6 @@ globals:
   d3: true
   __DEV__: true
   __PROD__: true
-  __PAYMENT_LIVE__: true
-  __ON_PREM__: true
 
 settings:
   import/ignore:

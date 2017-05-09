@@ -17,15 +17,17 @@ To launch the server serving the front
 - [ ] Fix the dependencies Dev / normal
 - [x] Fix hot module
 ### BACK(only serve the front) & API(all the http request)   
-- [x] Fix the webpack config (serve the production file of react redux etc)
-- [ ] serve gzip file ? nginx ? nodejs ?
-- [ ] Ignore the API or not ?  
-- [x] Find a way to set the adress of the server with webpack or configfile ? like if DEV = localhost:9000 else 198.... environement variable check DefinePlugin
+- [ ] make docker image to deploy
+  - [ ] nginx
+  - [ ] front
+- [ ] switch to koa
+- [ ] use koa-prerender
 - [ ] Make Isomorphic apps ?
+- [x] set your api adress in frontend/src/api/config
 - [ ] others ?
 ### FRONT
 - [x] redux-observable
-- [ ] Use redux-observable for all the apps SideEffect
+- [x] Use redux-observable for all the apps SideEffect
 - [x] Hot module
 - [x] Implement some reusable compo like a Navbar etc
 - [x] Implement React-router
@@ -36,6 +38,8 @@ To launch the server serving the front
 - [x] Implement extract-text-webpack-plugin (Webpack-prod)
 - [x] Implement dist /image (Webpack)
 - [x] framework scss: http://bulma.io/
+- [ ] fix webpack compile even if eslint error
+- [ ] use graphQL ?
 - [ ] Other ?
 ### IMPLEMENT test
 - [x] front test
