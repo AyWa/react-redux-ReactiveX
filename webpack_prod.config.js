@@ -5,6 +5,15 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const fs                = require('fs');
 const CompressionPlugin = require("compression-webpack-plugin");
 
+const nodeModules = {};
+ fs.readdirSync('node_modules')
+   .filter(function(x) {
+     return ['.bin'].indexOf(x) === -1;
+   })
+   .forEach(function(mod) {
+     nodeModules[mod] = 'commonjs ' + mod;
+});
+
 const frontend = {
   context: path.resolve(__dirname, './frontend'),
   entry: {
@@ -117,6 +126,12 @@ const backend = {
     path: path.resolve(__dirname, './build'),
     filename: 'backend.bundle.js',
   },
+  resolve: {
+    alias: {
+     node_modules: path.resolve(__dirname, 'node_modules/express')
+    },
+    modules: ["node_modules"],
+  },
   module: {
     rules: [
       {
@@ -135,6 +150,7 @@ const backend = {
        }
     }),
   ],
+  externals: nodeModules
 };
 
 module.exports = [

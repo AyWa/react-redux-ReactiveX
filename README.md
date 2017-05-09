@@ -17,7 +17,7 @@ To launch the server serving the front
 - [ ] make docker image to deploy
   - [ ] nginx
   - [ ] front
-- [ ] use node-prerender
+- [x] use node-prerender
 - [ ] Make Isomorphic apps ?
 - [x] set your api adress in frontend/src/api/config
 - [ ] others ?
