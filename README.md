@@ -12,9 +12,7 @@ To build
 `npm run build`   
 To launch the server serving the front   
 `npm run prod`   
-## General Explain & TODO
-- [ ] Fix the dependencies Dev / normal
-- [x] Fix hot module
+## General Explain
 ### BACK(only serve the front) & API(all the http request)   
 - [ ] make docker image to deploy
   - [ ] nginx
