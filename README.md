@@ -38,7 +38,7 @@ To launch the server serving the front
 - [x] Implement extract-text-webpack-plugin (Webpack-prod)
 - [x] Implement dist /image (Webpack)
 - [x] framework scss: http://bulma.io/
-- [ ] fix webpack compile even if eslint error
+- [x] fix webpack compile even if eslint error
 - [ ] use graphQL ?
 - [ ] Other ?
 ### IMPLEMENT test
