@@ -6,8 +6,11 @@
   "author": "Marc Hurabielle",
   "license": "MIT",
   "scripts": {
-    "prod": "rm -fr build && node_modules/.bin/webpack --config webpack_prod.config.js && cd build && node backend.bundle.js",
-    "build": "rm -fr build && node_modules/.bin/webpack --config webpack_prod.config.js",
+    "prod": "rm -fr serve_prod/build && node_modules/.bin/webpack --config webpack_prod.config.js && cd serve_prod/build && node backend.bundle.js",
+    "build": "rm -fr serve_prod/build && node_modules/.bin/webpack --config webpack_prod.config.js",
+    "docker-image": "npm run build && cd serve_prod && docker build -t aywan/node-web-app .",
+    "docker-start": "docker run -p 4200:4200 -d aywan/node-web-app",
+    "docker": "npm run docker-image && npm run docker-start",
     "dev": "node_modules/.bin/webpack-dev-server --config webpack_dev.config.js",
     "test": "jest"
   },
@@ -54,7 +57,6 @@
     "babel-preset-es2015": "^6.24.0",
     "babel-preset-react": "^6.23.0",
     "babel-preset-stage-0": "^6.24.1",
-    "compression-webpack-plugin": "^0.3.2",
     "css-loader": "^0.27.3",
     "eslint": "^3.17.1",
     "eslint-config-airbnb": "^14.1.0",
@@ -75,10 +77,8 @@
   },
   "dependencies": {
     "bulma": "^0.4.1",
-    "express": "^4.15.2",
     "history": "^4.6.1",
     "lodash": "^4.17.4",
-    "prerender-node": "^2.7.1",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-redux": "^5.0.3",

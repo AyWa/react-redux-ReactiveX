@@ -3,10 +3,9 @@ const webpack           = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const fs                = require('fs');
-const CompressionPlugin = require("compression-webpack-plugin");
 
 const nodeModules = {};
- fs.readdirSync('node_modules')
+ fs.readdirSync('./serve_prod/node_modules')
    .filter(function(x) {
      return ['.bin'].indexOf(x) === -1;
    })
@@ -20,7 +19,7 @@ const frontend = {
     app: './src/index.js',
   },
   output: {
-    path: path.resolve(__dirname, './build/frontend'),
+    path: path.resolve(__dirname, './serve_prod/build/frontend'),
     filename: 'frontend.bundle.js',
   },
   resolve: {
@@ -103,17 +102,10 @@ const frontend = {
       minimize: true,
       compress: true,
     }),
-    new CompressionPlugin({
-			asset: "[path].gz[query]",
-			algorithm: "gzip",
-			test: /\.(js|html)$/,
-			threshold: 10240,
-			minRatio: 0.8
-		})
   ]
 }
 const backend = {
-  context: path.resolve(__dirname, './backend'),
+  context: path.resolve(__dirname, './serve_prod'),
   entry: {
     app: './index.js',
   },
@@ -123,14 +115,11 @@ const backend = {
     __filename: false
   },
   output: {
-    path: path.resolve(__dirname, './build'),
+    path: path.resolve(__dirname, './serve_prod/build'),
     filename: 'backend.bundle.js',
   },
   resolve: {
-    alias: {
-     node_modules: path.resolve(__dirname, 'node_modules/express')
-    },
-    modules: ["node_modules"],
+    modules: ["./serve_prod/node_modules"],
   },
   module: {
     rules: [
