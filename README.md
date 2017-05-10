@@ -15,8 +15,9 @@ To launch the server serving the front
 ## General Explain
 ### BACK(only serve the front) & API(all the http request)   
 - [ ] make docker image to deploy
-  - [ ] nginx
-  - [ ] front
+  - [x] node serve webapps
+  - [ ] find a way to configure easily port
+  - [ ] opti ? NGINX / PM2 / docker compose etc
 - [x] use node-prerender
 - [ ] Make Isomorphic apps ?
 - [x] set your api adress in frontend/src/api/config
