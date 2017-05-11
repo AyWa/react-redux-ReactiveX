@@ -73,7 +73,8 @@
     "react-hot-loader": "next",
     "sass-loader": "^6.0.3",
     "webpack": "^2.2.1",
-    "webpack-dev-server": "^2.4.2"
+    "webpack-dev-middleware": "^1.10.2",
+    "webpack-hot-middleware": "^2.18.0"
   },
   "dependencies": {
     "bulma": "^0.4.1",

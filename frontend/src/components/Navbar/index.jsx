@@ -15,7 +15,7 @@ export default class Nav extends Component {
               className="nav-item"
               to="/"
             >
-              ReFast
+              ReFast refast
             </NavLink>
             <span className="icon">
               <a rel="noopener noreferrer" target="_blank" href="https://github.com/AyWa/react-redux-ReactiveX">

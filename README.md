@@ -40,4 +40,3 @@ To launch the server serving the front
 - [ ] Other ?
 ### IMPLEMENT test
 - [x] front test
-- [ ] back test

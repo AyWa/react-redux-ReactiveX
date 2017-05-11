@@ -3,19 +3,18 @@ const webpack           = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const fs                = require('fs');
 
-const frontend = {
+module.exports = {
   context: path.resolve(__dirname, './frontend'),
   entry: {
     'app': [
       'react-hot-loader/patch',
-      'webpack-dev-server/client?http://localhost:3000',
-      'webpack/hot/only-dev-server',
+      'webpack-hot-middleware/client?reload=true',
       './src/index.js',
     ]
   },
   output: {
     filename: 'frontend.bundle.js',
-    path: path.resolve(__dirname, './build/frontend'),
+    publicPath: '/',
   },
   resolve: {
     alias: {
@@ -90,18 +89,7 @@ const frontend = {
       template: 'src/index_dev.html',
       favicon: "images/favicon.ico",
       inject: 'body',
+      filename: 'index.html',
     })
   ],
-  devServer: {
-   host: 'localhost',
-   port: 3000,
-   historyApiFallback: true,
-   // respond to 404s with index.html
-   hot: true,
-   // enable HMR on the server
-  },
 }
-
-module.exports = [
-    Object.assign({} , frontend)
-];
