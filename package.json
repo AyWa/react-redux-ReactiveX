@@ -11,7 +11,7 @@
     "docker-image": "npm run build && cd serve_prod && docker build -t aywan/node-web-app .",
     "docker-start": "docker run -p 4200:4200 -d aywan/node-web-app",
     "docker": "npm run docker-image && npm run docker-start",
-    "dev": "node webpack_dev_server.js",
+    "dev": "node_modules/.bin/webpack --config webpack_dev_server.config.js && node dev_server.bundle.js",
     "test": "jest"
   },
   "babel": {
@@ -50,6 +50,7 @@
     ]
   },
   "devDependencies": {
+    "babel-cli": "^6.24.1",
     "babel-core": "^6.24.0",
     "babel-eslint": "^7.1.1",
     "babel-jest": "^20.0.0",

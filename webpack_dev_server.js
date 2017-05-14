@@ -50,11 +50,12 @@ app.use(webpackDevMiddleware(compiler, {
 //use hot reload
 app.use(webpackHotMiddleware(compiler));
 
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
 // Get our request parameters
 app.use(express.static(path.join(__dirname, buildDir)));
-
 app.get('*', (_, res) => {
   res.sendFile(path.join(__dirname, buildDir, "index.html"));
 });
 
-app.listen(8899);
+app.listen(8999);
