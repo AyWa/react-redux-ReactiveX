@@ -27,7 +27,7 @@ fse.remove(buildDir)
     console.error(err)
   })
 
-
+// plugin to emit in build folder
 compiler.plugin('emit', (compilation, callback) => {
     const assets = compilation.assets
     let file, data
@@ -38,6 +38,7 @@ compiler.plugin('emit', (compilation, callback) => {
     })
     callback()
 })
+//use the webpack config
 app.use(webpackDevMiddleware(compiler, {
   noInfo: false,
   publicPath: webpackConfiguration.output.publicPath,
@@ -46,6 +47,7 @@ app.use(webpackDevMiddleware(compiler, {
   colors: true,
   timings: true,
 }));
+//use hot reload
 app.use(webpackHotMiddleware(compiler));
 
 // Get our request parameters
