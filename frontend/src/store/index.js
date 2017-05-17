@@ -6,12 +6,12 @@ import {routerMiddleware} from 'react-router-redux'
 import {createEpicMiddleware} from 'redux-observable'
 import rootEpic from 'reducers-observable'
 import rootReducer from 'reducers'
-import createHistory from 'history/createBrowserHistory'
+import browserHistory from 'history/createBrowserHistory'
 
 let varhistory;
 const middlewares = []
 if (!process.env.__SERVER__) {
-  varhistory= createHistory()
+  varhistory= browserHistory()
   middlewares.push(routerMiddleware(varhistory))
 }
 middlewares.push(createEpicMiddleware(rootEpic))

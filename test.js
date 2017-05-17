@@ -5,25 +5,32 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 console.log(process.env.__SERVER__);
 import { StaticRouter as Router } from 'react-router-dom';
-import App from './frontend/src/routes/index.js';
+import App from 'routes/index.js';
+import { Provider } from 'react-redux';
+import {store} from 'store'
 // import NotFoundPage from './frontend/src/components/Errors/404.jsx';
-const app = module.exports = express();
+const app = express();
 const buildDir = "./build"
 
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname));
+app.use(express.static(path.join(__dirname, 'build')));
 // Get our request parameters
 //app.use(express.static(path.join(__dirname, buildDir)));
 app.get('*', (req, res) => {
   //res.sendFile(path.join(__dirname, buildDir, "index.html"));
+  console.log("coucou");
+  console.log(req.url);
   let markup = '';
   let status = 200;
 
   const context = {};
   markup = renderToString(
-    <Router location={req.url} context={context}>
-      <App />
-    </Router>,
+    <Provider store={store}>
+      <Router location={req.url} context={context}>
+        <App />
+      </Router>
+    </Provider>
   );
 
   // context.url will contain the URL to
@@ -35,8 +42,9 @@ app.get('*', (req, res) => {
   if (context.is404) {
     status = 404;
   }
+  console.log(context);
 
-  return res.status(status).render('index', { markup });
+  return res.status(status).render('index_dev', { markup });
 });
 
 app.listen(8899);

@@ -3,6 +3,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { AppContainer } from 'react-hot-loader'
+import { ConnectedRouter } from 'react-router-redux'
+import { history } from 'store'
 import indexApp from './routes';
 import {store} from './store'
 
@@ -11,7 +13,9 @@ const render = (Component) => {
   ReactDOM.render(
     <AppContainer>
       <Provider store={store}>
-        <Component />
+        <ConnectedRouter history={history}>
+          <Component />
+        </ConnectedRouter>
       </Provider>
     </AppContainer>
   , document.querySelector('.container'));
