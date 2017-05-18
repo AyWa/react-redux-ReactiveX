@@ -36,15 +36,10 @@ const backend = {
   },
   module: {
     rules: [{
-        // include: defaultIncluded,
-        test: /\.(scss|css)$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',// creates style nodes from JS strings
-          // translates CSS into CommonJS // compiles Sass to CSS
-          use: ['css-loader', 'sass-loader']
-        })
-      },
-      {
+        test: /\.(scss|css|jpe?g|png|gif|svg)$/,
+        loader: 'ignore-loader',
+        exclude: /node_modules/,
+      }, {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
@@ -69,7 +64,6 @@ const backend = {
       { from: 'server_index_dev.ejs', to: 'view/server_index_dev.ejs' },
       { from: 'server_index_prod.ejs', to: 'view/server_index_prod.ejs' },
     ]),
-    new ExtractTextPlugin("server_styles.css"),
   ],
   externals: nodeModules
 };
