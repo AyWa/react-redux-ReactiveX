@@ -1,6 +1,7 @@
 // server
-const path = require('path');
-const express = require('express');
+import path from 'path';
+import express from 'express';
+import prerender from 'prerender-node';
 
 // universal app
 import React from 'react';
@@ -14,6 +15,9 @@ import {store} from 'store'
 const viewDir = "./view"
 const frontBuild = "./frontend"
 
+// config
+const port = process.env.PORT || 8899;
+
 // init express app
 const app = express();
 
@@ -24,7 +28,10 @@ app.set('views', path.join(__dirname, viewDir));
 // Get our static request parameters
 app.use(express.static(path.join(__dirname, frontBuild)));
 
-//handle call
+// set up our middleware for prerender app for crawler
+app.use(prerender);
+
+// handle call
 app.get('*', (req, res) => {
   console.log(req.url);
   let markup = '';
@@ -52,5 +59,5 @@ app.get('*', (req, res) => {
 
   return res.status(status).render('server_index_dev', { markup });
 });
-
+console.log(`:) you can check :): http://localhost: ${port}`);
 app.listen(8899);
