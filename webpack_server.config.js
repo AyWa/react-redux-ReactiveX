@@ -2,10 +2,11 @@ const path              = require('path');
 const webpack           = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const fs                = require('fs');
 
 const nodeModules = {};
- fs.readdirSync('./serve_prod/node_modules')
+ fs.readdirSync('./node_modules')
    .filter(function(x) {
      return ['.bin'].indexOf(x) === -1;
    })
@@ -15,7 +16,7 @@ const nodeModules = {};
 const backend = {
   context: path.resolve(__dirname),
   entry: {
-    app: './test.js',
+    app: './server.js',
   },
   target: 'node',
   node: {
@@ -23,7 +24,7 @@ const backend = {
     __filename: false
   },
   output: {
-    path: path.resolve(__dirname),
+    path: path.resolve(__dirname, './build'),
     filename: 'dev_server.bundle.js',
   },
   resolve: {
@@ -64,6 +65,10 @@ const backend = {
          __SERVER__: JSON.stringify(true),
        }
     }),
+    new CopyWebpackPlugin([
+      { from: 'server_index_dev.ejs', to: 'view/server_index_dev.ejs' },
+      { from: 'server_index_prod.ejs', to: 'view/server_index_prod.ejs' },
+    ]),
     new ExtractTextPlugin("server_styles.css"),
   ],
   externals: nodeModules

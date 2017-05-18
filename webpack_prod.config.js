@@ -19,7 +19,7 @@ const frontend = {
     app: './src/index.js',
   },
   output: {
-    path: path.resolve(__dirname, './serve_prod/build/frontend'),
+    path: path.resolve(__dirname, './build/frontend'),
     filename: 'frontend.bundle.js',
   },
   resolve: {
@@ -96,6 +96,7 @@ const frontend = {
       template: 'src/index_prod.html',
       favicon: "images/favicon.ico",
       inject: 'body',
+      filename: 'index_front.html',
     }),
     new ExtractTextPlugin("styles.css"),
     new webpack.optimize.UglifyJsPlugin({

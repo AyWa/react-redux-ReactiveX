@@ -9,7 +9,7 @@ const webpackConfiguration = require('./webpack_dev.config.js')
 const compiler = webpack(webpackConfiguration);
 
 const app = express();
-const buildDir = "./build"
+const buildDir = "./build/frontend"
 
 // Delete build folder and create it again
 fse.remove(buildDir)
@@ -42,7 +42,7 @@ compiler.plugin('emit', (compilation, callback) => {
 app.use(webpackDevMiddleware(compiler, {
   noInfo: false,
   publicPath: webpackConfiguration.output.publicPath,
-  index: "index.html",
+  index: "index_front.html",
   quiet: false,
   colors: true,
   timings: true,
@@ -55,7 +55,7 @@ app.set('views', path.join(__dirname, 'views'));
 // Get our request parameters
 app.use(express.static(path.join(__dirname, buildDir)));
 app.get('*', (_, res) => {
-  res.sendFile(path.join(__dirname, buildDir, "index.html"));
+  res.sendFile(path.join(__dirname, buildDir, "index_front.html"));
 });
 
 app.listen(8999);

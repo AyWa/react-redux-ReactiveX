@@ -89,7 +89,7 @@ module.exports = {
       template: 'src/index_dev.html',
       favicon: "images/favicon.ico",
       inject: 'body',
-      filename: 'index.html',
+      filename: 'index_front.html',
     })
   ],
 }
