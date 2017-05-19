@@ -25,7 +25,8 @@ const backend = {
   },
   output: {
     path: path.resolve(__dirname, './build'),
-    filename: 'dev_server.bundle.js',
+    filename: 'server.bundle.js',
+    publicPath: '/',
   },
   resolve: {
     alias: {

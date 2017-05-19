@@ -12,16 +12,20 @@ const nodeModules = {};
    })
    .forEach(function(mod) {
      nodeModules[mod] = 'commonjs ' + mod;
-   });
+});
 
-const frontend = {
+const frontend  = {
   context: path.resolve(__dirname, './frontend'),
   entry: {
-    app: './src/index.js',
+    'app': [
+      'react-hot-loader/patch',
+      'webpack-hot-middleware/client?reload=true',
+      './src/index.js',
+    ]
   },
   output: {
-    path: path.resolve(__dirname, './build/frontend'),
     filename: 'frontend.bundle.js',
+    publicPath: '/',
   },
   resolve: {
     alias: {
@@ -30,11 +34,10 @@ const frontend = {
     modules: [path.resolve(__dirname, "./frontend/src"), "node_modules"],
     extensions: ['.js', '.jsx', '.scss', '.css']
   },
-  devtool: 'source-map',
+  devtool: 'eval',
   module: {
     rules: [
       {
-        //  include: defaultIncluded,
         test: /\.(jpe?g|png|gif|svg)$/i,
         loaders: [
          'file-loader?hash=sha512&digest=hex&name=[hash].[ext]',
@@ -58,54 +61,50 @@ const frontend = {
           }
          ],
       },{
-        // include: defaultIncluded,
         test: /\.(scss|css)$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',// creates style nodes from JS strings
-          // translates CSS into CommonJS // compiles Sass to CSS
-          use: ['css-loader', 'sass-loader']
-        })
+        use: [{
+            loader: "style-loader" // creates style nodes from JS strings
+        }, {
+            loader: "css-loader" // translates CSS into CommonJS
+        }, {
+            loader: "sass-loader" // compiles Sass to CSS
+        }]
       },
       {
         enforce: 'pre',
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         loader: 'eslint-loader',
+        options: {
+          emitWarning: true,
+        }
       },
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
-        options: {
-          presets: [
-            'es2015',
-            'react'
-          ]
-        }
       }
     ]
   },
   plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NamedModulesPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
     new webpack.DefinePlugin({
       "process.env": {
-         NODE_ENV: JSON.stringify("production"),
-         __DEV__: JSON.stringify(false),
-         __API__: "192.0000000",
+         NODE_ENV: JSON.stringify("development"),
+         __DEV__: JSON.stringify(true),
        }
     }),
     new HtmlWebpackPlugin({
-      template: 'src/index_prod.html',
+      template: 'src/index_dev.html',
       favicon: "images/favicon.ico",
       inject: 'body',
       filename: 'index_front.html',
-    }),
-    new ExtractTextPlugin("styles.css"),
-    new webpack.optimize.UglifyJsPlugin({
-      minimize: true,
-      compress: true,
-    }),
-  ]
+    })
+  ],
 }
+
 const backend = {
   context: path.resolve(__dirname),
   entry: {
@@ -118,7 +117,7 @@ const backend = {
   },
   output: {
     path: path.resolve(__dirname, './build'),
-    filename: 'server.bundle.js',
+    filename: 'server.dev.bundle.js',
   },
   resolve: {
     alias: {
@@ -129,10 +128,19 @@ const backend = {
   },
   module: {
     rules: [{
-        test: /\.(scss|css|jpe?g|png|gif|svg)$/,
+        test: /\.(jpe?g|png|gif|svg)$/,
         loader: 'ignore-loader',
         exclude: /node_modules/,
       }, {
+        test: /\.(scss|css)$/,
+        use: [{
+            loader: "style-loader" // creates style nodes from JS strings
+        }, {
+            loader: "css-loader" // translates CSS into CommonJS
+        }, {
+            loader: "sass-loader" // compiles Sass to CSS
+        }]
+      },{
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
@@ -148,8 +156,8 @@ const backend = {
   plugins: [
     new webpack.DefinePlugin({
       "process.env": {
-         NODE_ENV: JSON.stringify("production"),
-         __DEV__: JSON.stringify(false),
+         NODE_ENV: JSON.stringify("development"),
+         __DEV__: JSON.stringify(true),
          __SERVER__: JSON.stringify(true),
        }
     }),
@@ -161,7 +169,7 @@ const backend = {
   externals: nodeModules
 };
 
-module.exports = [
-    Object.assign({} , frontend),
-    Object.assign({} , backend)
-];
+module.exports = {
+    frontend: Object.assign({} , frontend),
+    backend: Object.assign({} , backend)
+};
