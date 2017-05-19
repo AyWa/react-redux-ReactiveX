@@ -128,18 +128,9 @@ const backend = {
   },
   module: {
     rules: [{
-        test: /\.(jpe?g|png|gif|svg)$/,
+        test: /\.(css|scss|jpe?g|png|gif|svg)$/,
         loader: 'ignore-loader',
         exclude: /node_modules/,
-      }, {
-        test: /\.(scss|css)$/,
-        use: [{
-            loader: "style-loader" // creates style nodes from JS strings
-        }, {
-            loader: "css-loader" // translates CSS into CommonJS
-        }, {
-            loader: "sass-loader" // compiles Sass to CSS
-        }]
       },{
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,

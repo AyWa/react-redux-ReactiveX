@@ -16,7 +16,7 @@ const viewDir = "./view"
 const frontBuild = "./frontend"
 
 // config
-const port = process.env.PORT || 8899;
+const port = process.env.PORT || 8123;
 
 // init express app
 const app = express();
@@ -60,4 +60,4 @@ app.get('*', (req, res) => {
   return res.status(status).render('server_index_dev', { markup });
 });
 console.log(`:) you can check :): http://localhost: ${port}`);
-app.listen(8899);
+app.listen(port);

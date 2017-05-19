@@ -1,4 +1,5 @@
 const path = require('path');
+const childProcess = require('child_process');
 const fse = require('fs-extra');
 const express = require('express');
 const webpack = require('webpack');
@@ -14,7 +15,7 @@ const app = express();
 const backBuildDir = "./build"
 const frontBuildDir = `${backBuildDir}/frontend`
 const viewBuildDir = `${backBuildDir}/view`
-
+var process = 5;
 // Delete build folder and create it again
 fse.remove(backBuildDir)
   .then(() => {
@@ -58,23 +59,49 @@ backCompiler.plugin('emit', (compilation, callback) => {
       data = assets[key].source()
       fse.writeFileSync(file, data)
     })
+    runScript('./build/server.dev.bundle.js', function (err) {
+        if (err) throw err;
+        console.log('finished running some-script.js');
+    });
     callback()
 })
+const runScript = (scriptPath, callback) => {
+    // keep track of whether callback has been invoked to prevent multiple invocations
+    var invoked = false;
+    //const baba = require(scriptPath);
+    console.log("coucou");
+    console.log(process);
+    if (process === 5) {
+      process = childProcess.fork(scriptPath);
+      // listen for errors as they may prevent the exit event from firing
+      process.on('error', function (err) {
+          if (invoked) return;
+          invoked = true;
+          callback(err);
+      });
+      // execute the callback once the process has finished running
+      process.on('exit', function (code) {
+          if (invoked) return;
+          invoked = true;
+          var err = code === 0 ? null : new Error('exit code ' + code);
+          callback(err);
+      });
+    }
+}
 
 //use the webpack config
-// app.use(webpackDevMiddleware(frontCompiler, {
-//   noInfo: false,
-//   publicPath: webpackFrontConfiguration.output.publicPath,
-//   index: "index_front.html",
-//   quiet: false,
-//   colors: true,
-//   timings: true,
-// }));
+app.use(webpackDevMiddleware(frontCompiler, {
+  noInfo: false,
+  publicPath: webpackFrontConfiguration.output.publicPath,
+  index: "index_front.html",
+  quiet: false,
+  colors: true,
+  timings: true,
+}));
 // dev
 webpackDevMiddleware(backCompiler, {
   noInfo: false,
   publicPath: webpackBackConfiguration.output.publicPath,
-  index: "index_front.html",
   quiet: false,
   colors: true,
   timings: true,
