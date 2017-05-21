@@ -16,7 +16,7 @@ const viewDir = "./view"
 const frontBuild = "./frontend"
 
 // config
-const port = process.env.PORT || 8123;
+const port = process.env.PORT || 8888;
 
 // init express app
 const app = express();
