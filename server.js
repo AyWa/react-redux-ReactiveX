@@ -32,6 +32,12 @@ app.use(express.static(path.join(__dirname, frontBuild)));
 app.use(prerender);
 
 // handle call
+if (process.env.__DEV__) {
+  app.get('/__webpack_hmr', (req, res) => {
+    res.status(404);
+  })
+}
+
 app.get('*', (req, res) => {
   console.log(req.url);
   let markup = '';

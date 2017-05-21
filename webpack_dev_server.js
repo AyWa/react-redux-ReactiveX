@@ -72,9 +72,8 @@ const runBackEndServer = () => {
 const runScript = (scriptPath, callback) => {
     // keep track of whether callback has been invoked to prevent multiple invocations
     var invoked = false;
-    console.log("coucou run script");
     if (!process) {
-      console.log("coucou fork");
+      console.log(`fork new process ${scriptPath}`);
       process = childProcess.fork(scriptPath);
       process.on('error', function (err) {
           if (invoked) return;
@@ -83,7 +82,7 @@ const runScript = (scriptPath, callback) => {
       });
       // execute the callback once the process has finished running
       process.on('exit', function (code) {
-          console.log("coucou exit");
+          console.log("exit code");
           if (invoked) return;
           invoked = true;
           var err = code === 0 ? null : new Error('exit code ' + code);
@@ -91,9 +90,9 @@ const runScript = (scriptPath, callback) => {
       });
       // if kill
       process.on('close', function (code) {
-        console.log("coucou close");
+        console.log("closing");
         process = false;
-        console.log(process);
+        invoked = false;
         runScript('./build/server.dev.bundle.js', (err) => {
             if (err) console.log(`error with exit ${err}`);
             console.log('finished running ./build/server.dev.bundle.js');
