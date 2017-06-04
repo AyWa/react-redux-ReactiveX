@@ -19,7 +19,7 @@ To launch the server serving the front
   - [ ] find a way to configure easily port
   - [ ] opti ? NGINX / PM2 / docker compose etc
 - [x] use node-prerender
-- [ ] Make Isomorphic apps ?
+- [x] Make Isomorphic apps ?
 - [x] set your api adress in frontend/src/api/config
 - [ ] others ?
 ### FRONT
