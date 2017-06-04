@@ -2,16 +2,17 @@ const path              = require('path');
 const webpack           = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const fs                = require('fs');
 
 const nodeModules = {};
- fs.readdirSync('./serve_prod/node_modules')
+ fs.readdirSync('./node_modules')
    .filter(function(x) {
      return ['.bin'].indexOf(x) === -1;
    })
    .forEach(function(mod) {
      nodeModules[mod] = 'commonjs ' + mod;
-});
+   });
 
 const frontend = {
   context: path.resolve(__dirname, './frontend'),
@@ -19,7 +20,7 @@ const frontend = {
     app: './src/index.js',
   },
   output: {
-    path: path.resolve(__dirname, './serve_prod/build/frontend'),
+    path: path.resolve(__dirname, './build/frontend'),
     filename: 'frontend.bundle.js',
   },
   resolve: {
@@ -96,6 +97,7 @@ const frontend = {
       template: 'src/index_prod.html',
       favicon: "images/favicon.ico",
       inject: 'body',
+      filename: 'index_front.html',
     }),
     new ExtractTextPlugin("styles.css"),
     new webpack.optimize.UglifyJsPlugin({
@@ -105,9 +107,9 @@ const frontend = {
   ]
 }
 const backend = {
-  context: path.resolve(__dirname, './serve_prod'),
+  context: path.resolve(__dirname),
   entry: {
-    app: './index.js',
+    app: './server.js',
   },
   target: 'node',
   node: {
@@ -115,19 +117,31 @@ const backend = {
     __filename: false
   },
   output: {
-    path: path.resolve(__dirname, './serve_prod/build'),
-    filename: 'backend.bundle.js',
+    path: path.resolve(__dirname, './build'),
+    filename: 'server.bundle.js',
   },
   resolve: {
-    modules: ["./serve_prod/node_modules"],
+    alias: {
+     images: path.resolve(__dirname, './frontend/images')
+    },
+    modules: [path.resolve(__dirname, "./frontend/src"), "node_modules"],
+    extensions: ['.js', '.jsx', '.scss', '.css']
   },
   module: {
-    rules: [
-      {
-        enforce: 'pre',
-        test: /\.js$/,
+    rules: [{
+        test: /\.(scss|css|jpe?g|png|gif|svg)$/,
+        loader: 'ignore-loader',
         exclude: /node_modules/,
-        loader: 'eslint-loader',
+      }, {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader',
+        options: {
+          presets: [
+            'es2015',
+            'react'
+          ]
+        }
       }
     ]
   },
@@ -136,8 +150,13 @@ const backend = {
       "process.env": {
          NODE_ENV: JSON.stringify("production"),
          __DEV__: JSON.stringify(false),
+         __SERVER__: JSON.stringify(true),
        }
     }),
+    new CopyWebpackPlugin([
+      { from: 'server_index_dev.ejs', to: 'view/server_index_dev.ejs' },
+      { from: 'server_index_prod.ejs', to: 'view/server_index_prod.ejs' },
+    ]),
   ],
   externals: nodeModules
 };

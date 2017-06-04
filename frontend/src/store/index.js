@@ -6,11 +6,14 @@ import {routerMiddleware} from 'react-router-redux'
 import {createEpicMiddleware} from 'redux-observable'
 import rootEpic from 'reducers-observable'
 import rootReducer from 'reducers'
-import createHistory from 'history/createBrowserHistory'
+import browserHistory from 'history/createBrowserHistory'
 
-export const history = createHistory()
+let varhistory;
 const middlewares = []
-middlewares.push(routerMiddleware(history))
+if (!process.env.__SERVER__) {
+  varhistory= browserHistory()
+  middlewares.push(routerMiddleware(varhistory))
+}
 middlewares.push(createEpicMiddleware(rootEpic))
 
 if (process.env.NODE_ENV === `development`) {
@@ -37,6 +40,8 @@ function configureStore(initialState) {
 
   return store;
 }
+
+export const history = varhistory
 
 export const store = configureStore()
 

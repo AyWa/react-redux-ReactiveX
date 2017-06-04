@@ -1,21 +1,31 @@
 const path              = require('path');
 const webpack           = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const fs                = require('fs');
 
-const frontend = {
+const nodeModules = {};
+ fs.readdirSync('./node_modules')
+   .filter(function(x) {
+     return ['.bin'].indexOf(x) === -1;
+   })
+   .forEach(function(mod) {
+     nodeModules[mod] = 'commonjs ' + mod;
+});
+
+const frontend  = {
   context: path.resolve(__dirname, './frontend'),
   entry: {
     'app': [
       'react-hot-loader/patch',
-      'webpack-dev-server/client?http://localhost:3000',
-      'webpack/hot/only-dev-server',
+      'webpack-hot-middleware/client?reload=true',
       './src/index.js',
     ]
   },
   output: {
     filename: 'frontend.bundle.js',
-    path: path.resolve(__dirname, './build/frontend'),
+    publicPath: '/',
   },
   resolve: {
     alias: {
@@ -90,18 +100,67 @@ const frontend = {
       template: 'src/index_dev.html',
       favicon: "images/favicon.ico",
       inject: 'body',
+      filename: 'index_front.html',
     })
   ],
-  devServer: {
-   host: 'localhost',
-   port: 3000,
-   historyApiFallback: true,
-   // respond to 404s with index.html
-   hot: true,
-   // enable HMR on the server
-  },
 }
 
-module.exports = [
-    Object.assign({} , frontend)
-];
+const backend = {
+  context: path.resolve(__dirname),
+  entry: {
+    app: './server.js',
+  },
+  target: 'node',
+  node: {
+    __dirname: false,
+    __filename: false
+  },
+  output: {
+    path: path.resolve(__dirname, './build'),
+    filename: 'server.dev.bundle.js',
+  },
+  resolve: {
+    alias: {
+     images: path.resolve(__dirname, './frontend/images')
+    },
+    modules: [path.resolve(__dirname, "./frontend/src"), "node_modules"],
+    extensions: ['.js', '.jsx', '.scss', '.css']
+  },
+  module: {
+    rules: [{
+        test: /\.(css|scss|jpe?g|png|gif|svg)$/,
+        loader: 'ignore-loader',
+        exclude: /node_modules/,
+      },{
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader',
+        options: {
+          presets: [
+            'es2015',
+            'react'
+          ]
+        }
+      }
+    ]
+  },
+  plugins: [
+    new webpack.DefinePlugin({
+      "process.env": {
+         NODE_ENV: JSON.stringify("development"),
+         __DEV__: JSON.stringify(true),
+         __SERVER__: JSON.stringify(true),
+       }
+    }),
+    new CopyWebpackPlugin([
+      { from: 'server_index_dev.ejs', to: 'view/server_index_dev.ejs' },
+      { from: 'server_index_prod.ejs', to: 'view/server_index_prod.ejs' },
+    ]),
+  ],
+  externals: nodeModules
+};
+
+module.exports = {
+    frontend: Object.assign({} , frontend),
+    backend: Object.assign({} , backend)
+};
