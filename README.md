@@ -4,15 +4,36 @@ Please use yarn
 `yarn install`   
 or   
 `npm install`   
-## Dev   
-To launch webpack dev serveur   
-`npm run dev`   
-## Prod
-To build   
-`npm run build`   
-To launch the server serving the front   
-`npm run prod`   
 ## General Explain
+### Dev
+start:   
+`npm run dev`   
+It will run 2 server:
+- Isomorphic server: default `http://localhost:8888`   
+- Webpack Hot reload server : default `http://localhost:9999`   
+to check if Isomorphic work well, you can add a throttle in chome -> dev-> network.   
+(there is no style in dev for Isomorphic)   
+### Build
+build:   
+`npm run build`   
+It will build the isomorphic server and the front end.
+### Prod
+build and run:   
+`npm run prod`   
+It will build the isomorphic server and the front end and then launch them.
+(if you want to test only isomorphic delete frontend.bundle.js)
+### Docker
+- build image:   
+`npm run docker-image`   
+Will build the docker image
+
+- run image:   
+`npm run docker-start`   
+Will start the docker image -> default `http://localhost:8080`
+
+- build and run:
+`npm run docker`   
+
 ### BACK(only serve the front) & API(all the http request)   
 - [ ] make docker image to deploy
   - [x] node serve webapps
