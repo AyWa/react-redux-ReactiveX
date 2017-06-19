@@ -7,6 +7,8 @@ import {createEpicMiddleware} from 'redux-observable'
 import rootEpic from 'reducers-observable'
 import rootReducer from 'reducers'
 import browserHistory from 'history/createBrowserHistory'
+// graphQl import
+import ApolloClient from 'api/graphql'
 
 let varhistory;
 const middlewares = []
@@ -14,6 +16,7 @@ if (!process.env.__SERVER__) {
   varhistory= browserHistory()
   middlewares.push(routerMiddleware(varhistory))
 }
+middlewares.push(ApolloClient.middleware())
 middlewares.push(createEpicMiddleware(rootEpic))
 
 if (process.env.NODE_ENV === `development`) {
