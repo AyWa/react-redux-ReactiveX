@@ -7,8 +7,6 @@ const networkInterface = createNetworkInterface({
   uri,
 });
 
-console.log(`graphQL endpoint: ${uri}`);
-
 const client = new ApolloClient({
   networkInterface,
 });
