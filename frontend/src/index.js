@@ -4,7 +4,6 @@ import ReactDOM from 'react-dom';
 // graphql
 import { ApolloProvider } from 'react-apollo';
 import ApolloClient from 'api/graphql'
-// import { Provider } from 'react-redux';
 import { AppContainer } from 'react-hot-loader'
 import { ConnectedRouter } from 'react-router-redux'
 import { history } from 'store'

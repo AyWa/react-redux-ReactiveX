@@ -3,12 +3,12 @@ import { myApi } from 'api/config'
 
 const uri = `${myApi}/graphql`
 
-const networkInterface = createNetworkInterface({
+export const networkInterface = createNetworkInterface({
   uri,
 });
 
-const client = new ApolloClient({
+export const client = new ApolloClient({
   networkInterface,
-});
+})
 
 export default client

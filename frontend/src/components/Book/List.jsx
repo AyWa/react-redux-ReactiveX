@@ -36,6 +36,7 @@ class BookList extends Component {
     const {
       feed,
     } = this.props.data
+
     return (
       <div>
         <ul className="list-group col-md-4">
