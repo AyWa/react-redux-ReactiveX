@@ -9,6 +9,7 @@ import rootReducer from 'reducers'
 import browserHistory from 'history/createBrowserHistory'
 // graphQl import
 import ApolloClient from 'api/graphql'
+import {safe} from 'utilities'
 
 let varhistory;
 const middlewares = []
@@ -19,7 +20,7 @@ if (!process.env.__SERVER__) {
 
 middlewares.push(ApolloClient.middleware())
 const initialState = !process.env.__SERVER__ ? {
-  apollo: window.__APOLLO_STATE__.apollo,
+  apollo: safe(() => window.__APOLLO_STATE__.apollo, {}),
 } : {}
 middlewares.push(createEpicMiddleware(rootEpic))
 
