@@ -93,10 +93,10 @@ const runScript = (scriptPath, callback) => {
         console.log("closing");
         process = false;
         invoked = false;
-        runScript('./build/server.dev.bundle.js', (err) => {
-            if (err) console.log(`error with exit ${err}`);
-            console.log('finished running ./build/server.dev.bundle.js');
-        });
+        // runScript('./build/server.dev.bundle.js', (err) => {
+        //     if (err) console.log(`error with exit ${err}`);
+        //     console.log('finished running ./build/server.dev.bundle.js');
+        // });
       });
       // listen for errors as they may prevent the exit event from firing
     } else {

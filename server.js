@@ -1,3 +1,4 @@
+import 'isomorphic-fetch';
 // server
 import path from 'path';
 import express from 'express';
@@ -8,9 +9,19 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { StaticRouter as Router } from 'react-router-dom';
 import App from 'routes/index.js';
-import { Provider } from 'react-redux';
+import {
+  ApolloClient,
+  ApolloProvider,
+  getDataFromTree,
+  renderToStringWithData
+} from 'react-apollo';
+import {networkInterface} from 'api/graphql'
 import {store} from 'store'
 
+const apolloClient = new ApolloClient({
+  ssrMode: true,
+  networkInterface,
+})
 // const directory __dirname === ./build
 const viewDir = "./view"
 const frontBuild = "./frontend"
@@ -44,26 +55,28 @@ app.get('*', (req, res) => {
   let status = 200;
 
   const context = {};
-  markup = renderToString(
-    <Provider store={store}>
+  const AppFront = (
+    <ApolloProvider client={apolloClient} store={store}>
       <Router location={req.url} context={context}>
         <App />
       </Router>
-    </Provider>
-  );
+    </ApolloProvider>
+  )
 
-  // context.url will contain the URL to
-  // redirect to if a <Redirect> was used
-  if (context.url) {
-    return res.redirect(302, context.url);
-  }
-
-  if (context.is404) {
-    status = 404;
-  }
-  console.log(context);
-
-  return res.status(status).render('server_index_dev', { markup });
+  renderToStringWithData(AppFront).then((markup) => {
+    const data = apolloClient.store.getState().apollo.data;
+    // We are ready to render for real
+    const initialState = {
+      apollo: {data},
+    }
+    return res.status(status).render(
+      'server_index_dev',
+      {
+        markup,
+        initialState,
+      }
+    )
+  });
 });
-console.log(`:) you can check :): http://localhost: ${port}`);
+console.log(`:) you can check :) : http://localhost: ${port}`);
 app.listen(port);
