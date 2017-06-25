@@ -19,7 +19,7 @@ const render = (Component) => {
         </ConnectedRouter>
       </ApolloProvider>
     </AppContainer>
-  , document.querySelector('.container'));
+  , document.querySelector('.app-container'));
 }
 
 render(indexApp)

@@ -1,5 +1,8 @@
-module.exports = {
-  BOOK_SELECTED: 'BOOK_SELECTED',
-  BOOK_RESET: 'BOOK_RESET',
-  ADD_BOOK: 'ADD_BOOK',
-}
+export const BOOK_SELECTED = 'BOOK_SELECTED'
+export const BOOK_RESET = 'BOOK_RESET'
+export const ADD_BOOK = 'ADD_BOOK'
+export const SET_MODAL = 'SET_MODAL'
+export const DISMISS_MODAL = 'DISMISS_MODAL'
+export const SET_ALERT = 'SET_ALERT'
+export const DISMISS_ALERT = 'DISMISS_ALERT'
+export const TEST_SET_ERROR = 'TEST_SET_ERROR'

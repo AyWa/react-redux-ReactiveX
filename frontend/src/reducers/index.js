@@ -3,12 +3,16 @@ import { combineReducers } from 'redux';
 import {routerReducer} from 'react-router-redux'
 import { reducer as formReducer } from 'redux-form'
 // app reducer
-import BooksReducer from './reducer_books';
-import ActiveBook from './reducer_active_book';
+import books from './reducer_books';
+import activeBook from './reducer_active_book';
+import modals from './modals';
+import alerts from './alerts';
 
 const rootReducer = combineReducers({
-  books: BooksReducer,
-  activeBook: ActiveBook,
+  books,
+  activeBook,
+  modals,
+  alerts,
   router: routerReducer,
   form: formReducer,
   apollo: ApolloClient.reducer(),

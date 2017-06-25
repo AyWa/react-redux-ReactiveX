@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {selectBook} from 'actions';
+import {selectBook, setModal, testSetError} from 'actions';
 import { graphql } from 'react-apollo';
 import { getRepository } from 'api/graphql/repository'
+import Button from 'reusable/UI/Button'
 import BookDetail from './Detail';
 
 
@@ -46,6 +47,14 @@ class BookList extends Component {
         <ul className="list-group col-md-4">
           {feed ? this.renderFeed() : ''}
         </ul>
+        <Button
+          title="test modal"
+          onClick={_ => setModal({s: 'dd'})}
+        />
+        <Button
+          title="test modal"
+          onClick={testSetError}
+        />
       </div>
     )
   }
