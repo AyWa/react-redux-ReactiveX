@@ -3,7 +3,7 @@ import {TEST_SET_ERROR, SET_ALERT, DISMISS_ALERT} from 'actions/types'
 import {classModifier} from 'utilities/types'
 import Rx from 'rxjs';
 
-const maxDelay = 3000;
+const maxDelay = 5000;
 let alertId = 0
 const generateAlertId = () => alertId++
 
@@ -29,7 +29,7 @@ export const generateAction$ = (action$) => {
           type: DISMISS_ALERT,
           payload: alertId,
         })
-        .delay(maxDelay)
+        .delay(maxDelay),
       )
     )
   }
