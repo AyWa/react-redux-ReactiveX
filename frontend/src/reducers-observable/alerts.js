@@ -27,12 +27,57 @@ export const generateAlert$ = (action$) => {
   }
 export const timeoutDismissAlert$ = (action$) => {
   return action$.ofType(SET_ALERT)
-    .delay(maxDelay)
-    .map(({payload}) => ({
-      type: DISMISS_ALERT,
-      payload: payload.id,
-    }))
+    .mergeMap(action =>
+      Rx.Observable.empty()
+      .concat(
+        Rx.Observable.of(action)
+          .delay(maxDelay)
+          .map(({payload}) => ({type: DISMISS_ALERT, payload: payload.id}))
+          .race(
+            action$.ofType(DISMISS_ALERT)
+              .skipWhile(({payload}) => payload !== action.payload.id)
+              .first()
+              .map(() => null)
+          )
+      )
+      .map((a) => a ? a : {type: "I_DONT_WANT"})
+    )
   }
+
+// export const generateAction$ = (action$) => {
+//   return action$.ofType(TEST_SET_ERROR)
+//     .map(action => ({
+//         type: SET_ALERT,
+//         payload: generateAlertPayload(),
+//       })
+//       .concat(
+//         Rx.Observable.race(
+//           action$.ofType(DISMISS_ALERT)
+//             .skipWhile((payload) => {
+//               console.log(payload);
+//               console.log(alertId);
+//               // console.log(myId);
+//               return payload === alertId
+//             })
+//             .first()
+//             .map(() => "complete"),
+//           Rx.Observable.timer(maxDelay),
+//         )
+//         .map(a => {
+//           console.log(a)
+//           console.log(alertId);
+//           return a !== "complete" ? {
+//             type: DISMISS_ALERT,
+//             payload: alertId,
+//           } : {type: "OSEF"}
+//         })
+//       )
+//     )
+//   }
+//
+// export const yolo = (id) => {
+//
+// }
 
 // export const raceUserAction = (action$) => {
 //   return action$.ofType(DISMISS_ALERT)
