@@ -17,21 +17,21 @@ const generateAlertPayload = () => {
   }
 }
 
-export const generateAction$ = (action$) => {
+export const generateAlert$ = (action$) => {
   return action$.ofType(TEST_SET_ERROR)
-    .mergeMap(action =>
-      Rx.Observable.of({
+    .map(action => ({
         type: SET_ALERT,
         payload: generateAlertPayload(),
       })
-      .concat(
-        Rx.Observable.of({
-          type: DISMISS_ALERT,
-          payload: alertId,
-        })
-        .delay(maxDelay),
-      )
     )
+  }
+export const timeoutDismissAlert$ = (action$) => {
+  return action$.ofType(SET_ALERT)
+    .delay(maxDelay)
+    .map(({payload}) => ({
+      type: DISMISS_ALERT,
+      payload: payload.id,
+    }))
   }
 
 // export const raceUserAction = (action$) => {
@@ -63,5 +63,6 @@ export const generateAction$ = (action$) => {
 
 
 export default combineEpics(
-  generateAction$,
+  generateAlert$,
+  timeoutDismissAlert$,
 )
