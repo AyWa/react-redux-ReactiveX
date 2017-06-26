@@ -1,7 +1,13 @@
 .alerts-container {
   position: absolute;
+  display: flex;
+  flex-direction: column-reverse;
   bottom: 1rem;
   right: 1rem;
   max-width: 300px;
   z-index: 30;
+}
+
+.alerts-container > .message:not(:last-child) {
+  margin: 1rem 0 0 0;
 }
