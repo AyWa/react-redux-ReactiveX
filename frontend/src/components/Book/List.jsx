@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {selectBook, setModal, testSetError} from 'actions';
+import {selectBook, setModal, setAlert} from 'actions';
 import { graphql } from 'react-apollo';
 import { getRepository } from 'api/graphql/repository'
+import {classModifier} from 'utilities/types'
 import Button from 'reusable/UI/Button'
 import BookDetail from './Detail';
-
 
 class BookList extends Component {
   renderList() {
@@ -53,7 +53,11 @@ class BookList extends Component {
         />
         <Button
           title="test modal"
-          onClick={testSetError}
+          onClick={_ => setAlert({
+            header: `hey dd`,
+            body: 'this is a strong error',
+            modifier: classModifier.danger,
+          })}
         />
       </div>
     )
