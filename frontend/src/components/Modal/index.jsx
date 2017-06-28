@@ -2,21 +2,24 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Modal from 'reusable/UI/Modal'
 import {dismissModal} from 'actions'
+// import all the reusable modal
+import modalSelector from 'reusable/modals'
 
 class ModalContainer extends Component {
   render() {
     const {
       modals,
     } = this.props
-    const isActive = Object.keys(modals).length
-    return (
+    const MyChildren = modalSelector[modals.modal]
+
+    return MyChildren ? (
       <Modal
-        isActive={isActive}
+        isActive
         dismiss={dismissModal}
       >
-        <div> children </div>
+        <MyChildren {...modals} />
       </Modal>
-    )
+    ) : null
   }
 }
 

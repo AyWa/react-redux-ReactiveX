@@ -5,6 +5,7 @@ import { graphql } from 'react-apollo';
 import { getRepository } from 'api/graphql/repository'
 import {classModifier} from 'utilities/types'
 import Button from 'reusable/UI/Button'
+import {TEST} from 'utilities/modals'
 import BookDetail from './Detail';
 
 class BookList extends Component {
@@ -49,10 +50,12 @@ class BookList extends Component {
         </ul>
         <Button
           title="test modal"
-          onClick={_ => setModal({s: 'dd'})}
+          onClick={_ => setModal({
+            modal: TEST,
+          })}
         />
         <Button
-          title="test modal"
+          title="test alert"
           onClick={_ => setAlert({
             header: `hey dd`,
             body: 'this is a strong error',
