@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import {selectBook, setModal, setAlert} from 'actions';
 import { graphql } from 'react-apollo';
 import { getRepository } from 'api/graphql/repository'
-import {classModifier, sizeModifier} from 'utilities/types'
+import {color, size} from 'utilities/types'
 import Button from 'reusable/UI/Button'
 import Tag from 'reusable/UI/Tag'
 import Progress from 'reusable/UI/Progress'
@@ -52,37 +52,40 @@ class BookList extends Component {
         </ul>
         <Button
           title="test modal"
+          color={color.primary}
           onClick={_ => setModal({
             modal: TEST,
           })}
         />
         <Button
           title="test alert"
+          isOutlined
+          color={color.danger}
           onClick={_ => setAlert({
             header: `hey dd`,
             body: 'this is a strong error',
-            modifier: classModifier.danger,
+            modifier: color.danger,
           })}
         />
         <Tag
           title="test click"
-          color={classModifier.danger}
+          color={color.danger}
           onClick={e => console.log(e)}
         />
         <Tag
           title="test click"
-          color={classModifier.primary}
+          color={color.primary}
         />
         <Progress
           value={200}
           max={1000}
-          color={classModifier.primary}
-          size={sizeModifier.small}
+          color={color.primary}
+          size={size.small}
         />
         <Progress
           value={50}
           max={100}
-          color={classModifier.info}
+          color={color.info}
         />
       </div>
     )

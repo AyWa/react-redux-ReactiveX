@@ -1,4 +1,4 @@
-export const classModifier = {
+export const color = {
   primary: 'is-primary',
   success: 'is-success',
   info: 'is-info',
@@ -7,9 +7,15 @@ export const classModifier = {
   dark: 'is-dark',
 }
 
-export const sizeModifier = {
+export const size = {
   small: 'is-small',
   medium: 'is-medium',
   large: 'is-large',
 }
-export default classModifier
+
+export const modifier = {
+  loading: 'is-loading',
+  outlined: 'is-outlined',
+}
+
+export default modifier

@@ -1,19 +1,26 @@
 import React from 'react'
+import {modifier} from 'utilities/types'
 import './button.scss'
 
 export default (props) => {
   const {
     isDelete,
-    sizeModifier,
-    title = '',
+    size,
+    color,
+    isOutlined,
+    isLoading,
     disabled,
+    title = '',
+    className = '',
     type = 'button',
     onClick = _ => _,
-    className = '',
   } = props
 
-  const elemClass = isDelete ? `delete ${sizeModifier}`
-    : `button ${className} ${sizeModifier}`
+  const loadingClass = isLoading ? modifier.loading : ''
+  const outlinedClass = isOutlined ? modifier.outlined : ''
+  const elemClass = isDelete ? `delete ${size}`
+    : `button ${size} ${color} ${loadingClass} ${outlinedClass} ${className}`
+
   return (
     <button
       disabled={disabled}
