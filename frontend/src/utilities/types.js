@@ -6,4 +6,10 @@ export const classModifier = {
   danger: 'is-danger',
   dark: 'is-dark',
 }
+
+export const sizeModifier = {
+  small: 'is-small',
+  medium: 'is-medium',
+  large: 'is-large',
+}
 export default classModifier

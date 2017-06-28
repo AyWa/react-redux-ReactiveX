@@ -5,6 +5,7 @@ import { graphql } from 'react-apollo';
 import { getRepository } from 'api/graphql/repository'
 import {classModifier} from 'utilities/types'
 import Button from 'reusable/UI/Button'
+import Tag from 'reusable/UI/Tag'
 import {TEST} from 'utilities/modals'
 import BookDetail from './Detail';
 
@@ -61,6 +62,15 @@ class BookList extends Component {
             body: 'this is a strong error',
             modifier: classModifier.danger,
           })}
+        />
+        <Tag
+          title="test click"
+          color={classModifier.danger}
+          onClick={e => console.log(e)}
+        />
+        <Tag
+          title="test click"
+          color={classModifier.primary}
         />
       </div>
     )

@@ -3,6 +3,8 @@ import './button.scss'
 
 export default (props) => {
   const {
+    isDelete,
+    sizeModifier,
     title = '',
     disabled,
     type = 'button',
@@ -10,7 +12,8 @@ export default (props) => {
     className = '',
   } = props
 
-  const elemClass = `button ${className}`
+  const elemClass = isDelete ? `delete ${sizeModifier}`
+    : `button ${className} ${sizeModifier}`
   return (
     <button
       title={title}
