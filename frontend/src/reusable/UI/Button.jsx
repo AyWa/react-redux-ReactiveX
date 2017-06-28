@@ -16,7 +16,6 @@ export default (props) => {
     : `button ${className} ${sizeModifier}`
   return (
     <button
-      title={title}
       disabled={disabled}
       type={type}
       onClick={onClick}

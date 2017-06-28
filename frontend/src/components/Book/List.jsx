@@ -3,9 +3,10 @@ import { connect } from 'react-redux';
 import {selectBook, setModal, setAlert} from 'actions';
 import { graphql } from 'react-apollo';
 import { getRepository } from 'api/graphql/repository'
-import {classModifier} from 'utilities/types'
+import {classModifier, sizeModifier} from 'utilities/types'
 import Button from 'reusable/UI/Button'
 import Tag from 'reusable/UI/Tag'
+import Progress from 'reusable/UI/Progress'
 import {TEST} from 'utilities/modals'
 import BookDetail from './Detail';
 
@@ -71,6 +72,17 @@ class BookList extends Component {
         <Tag
           title="test click"
           color={classModifier.primary}
+        />
+        <Progress
+          value={200}
+          max={1000}
+          color={classModifier.primary}
+          size={sizeModifier.small}
+        />
+        <Progress
+          value={50}
+          max={100}
+          color={classModifier.info}
         />
       </div>
     )
