@@ -4,11 +4,13 @@ import './button.scss'
 
 export default (props) => {
   const {
+    isOutlined,
+    isLoading,
+    isInverted,
+    isFocused,
     isDelete,
     size,
     color,
-    isOutlined,
-    isLoading,
     disabled,
     title = '',
     className = '',
@@ -18,8 +20,11 @@ export default (props) => {
 
   const loadingClass = isLoading ? modifier.loading : ''
   const outlinedClass = isOutlined ? modifier.outlined : ''
+  const invertedClass = isInverted ? modifier.inverted : ''
+  const focusedClass = isFocused ? modifier.focused : ''
   const elemClass = isDelete ? `delete ${size}`
-    : `button ${size} ${color} ${loadingClass} ${outlinedClass} ${className}`
+    : `button ${size} ${color} ${loadingClass} ${outlinedClass}
+      ${invertedClass} ${focusedClass} ${className}`
 
   return (
     <button

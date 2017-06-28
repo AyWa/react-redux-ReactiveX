@@ -16,6 +16,8 @@ export const size = {
 export const modifier = {
   loading: 'is-loading',
   outlined: 'is-outlined',
+  inverted: 'is-inverted',
+  focused: 'is-focused',
 }
 
 export default modifier

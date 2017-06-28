@@ -51,6 +51,22 @@ class BookList extends Component {
           {feed ? this.renderFeed() : ''}
         </ul>
         <Button
+          title="loading"
+          color={color.warning}
+          isLoading
+        />
+        <Button
+          title="inverted disabled"
+          color={color.success}
+          isInverted
+          disabled
+        />
+        <Button
+          title="focused"
+          color={color.primary}
+          isFocused
+        />
+        <Button
           title="test modal"
           color={color.primary}
           onClick={_ => setModal({
