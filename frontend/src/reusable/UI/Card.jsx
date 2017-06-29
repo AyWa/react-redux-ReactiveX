@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {modifier} from "utilities/types"
+import {modifier} from 'utilities/types'
 import './card.scss'
 
 const element = 'card'
@@ -18,6 +18,13 @@ export default class BookList extends Component {
     this.state = {
       isClose: props.initialState,
     }
+    this.onToggle = this.onToggle.bind(this)
+  }
+
+  onToggle() {
+    this.setState({
+      isClose: !this.state.isClose,
+    })
   }
 
   render() {
@@ -25,19 +32,20 @@ export default class BookList extends Component {
       img,
       children,
       footer,
-      headerTitle
+      headerTitle,
     } = this.props
-    console.log(this.state.isClose);
+
     const hiddenClass = this.state.isClose ? modifier.hidden : ''
+
     return (
       <div className={element}>
-        <header className={headerClass}>
+        <header className={headerClass} onClick={this.onToggle}>
           <p className={headerTitleClass}>
             {headerTitle}
           </p>
           <a className="card-header-icon">
             <span className="icon">
-              <i className="fa fa-angle-down"></i>
+              <i className="fa fa-angle-down" />
             </span>
           </a>
         </header>
