@@ -7,8 +7,16 @@ import {color, size} from 'utilities/types'
 import Button from 'reusable/UI/Button'
 import Tag from 'reusable/UI/Tag'
 import Progress from 'reusable/UI/Progress'
+import Card from 'reusable/UI/Card'
+import Image from 'reusable/UI/Image'
 import {TEST} from 'utilities/modals'
 import BookDetail from './Detail';
+
+const footer = [
+  <a className="card-footer-item">Save</a>,
+  <a className="card-footer-item">Edit</a>,
+  <a className="card-footer-item">Delete</a>,
+]
 
 class BookList extends Component {
   renderList() {
@@ -103,6 +111,24 @@ class BookList extends Component {
           max={100}
           color={color.info}
         />
+        <Card
+          img={
+            <Image
+              size="4by3"
+              src="http://bulma.io/images/placeholders/1280x960.png"
+            />
+          }
+          initialState
+          headerTitle="coucou"
+          footer={footer}
+        >
+          <div>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
+            <a>@bulmaio</a>. <a>#css</a> <a>#responsive</a>
+            <br />
+            <small>11:09 PM - 1 Jan 2016</small>
+          </div>
+        </Card>
       </div>
     )
   }
