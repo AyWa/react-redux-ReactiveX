@@ -9,3 +9,7 @@ body,
 .app-container {
   height: 100%;
 }
+
+.is-inverted {
+  transform: rotate(180deg);
+}

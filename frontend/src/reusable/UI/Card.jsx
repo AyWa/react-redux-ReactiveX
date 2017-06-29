@@ -35,8 +35,8 @@ export default class BookList extends Component {
       headerTitle,
     } = this.props
 
-    const hiddenClass = this.state.isClose ? modifier.hidden : ''
-
+    const hiddenModifierClass = this.state.isClose ? modifier.hidden : ''
+    const iconModifierClass = this.state.isClose ? '' : modifier.inverted
     return (
       <div className={element}>
         <header className={headerClass} onClick={this.onToggle}>
@@ -44,18 +44,18 @@ export default class BookList extends Component {
             {headerTitle}
           </p>
           <a className="card-header-icon">
-            <span className="icon">
+            <span className={`icon ${iconModifierClass}`}>
               <i className="fa fa-angle-down" />
             </span>
           </a>
         </header>
-        <div className={`${imgClass} ${hiddenClass}`}>
+        <div className={`${imgClass} ${hiddenModifierClass}`}>
           {img}
         </div>
-        <div className={`card-content ${hiddenClass}`}>
+        <div className={`card-content ${hiddenModifierClass}`}>
           {children}
         </div>
-        <footer className={`${footerClass} ${hiddenClass}`}>
+        <footer className={`${footerClass} ${hiddenModifierClass}`}>
           {footer}
         </footer>
       </div>
