@@ -13,9 +13,9 @@ import {TEST} from 'utilities/modals'
 import BookDetail from './Detail';
 
 const footer = [
-  <a className="card-footer-item">Save</a>,
-  <a className="card-footer-item">Edit</a>,
-  <a className="card-footer-item">Delete</a>,
+  <a>Save</a>,
+  <a>Edit</a>,
+  <a>Delete</a>,
 ]
 
 class BookList extends Component {
@@ -31,9 +31,9 @@ class BookList extends Component {
     })
   }
   renderFeed() {
-    return this.props.data.feed.map((repository) => {
+    return this.props.data.feed.map((repository, i) => {
       return (
-        <li key={repository.postedBy.login} className="list-group-item">
+        <li key={`${repository.postedBy.login}${i}`} className="list-group-item">
           <div>
             login: {repository.postedBy.login}
           </div>
@@ -122,6 +122,16 @@ class BookList extends Component {
           headerTitle="coucou"
           footer={footer}
         >
+          <div>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
+            <a>@bulmaio</a>. <a>#css</a> <a>#responsive</a>
+            <br />
+            <small>11:09 PM - 1 Jan 2016</small>
+          </div>
+        </Card>
+        <br />
+        ---limit --
+        <Card>
           <div>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
             <a>@bulmaio</a>. <a>#css</a> <a>#responsive</a>

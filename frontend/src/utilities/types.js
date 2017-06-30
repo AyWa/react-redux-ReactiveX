@@ -15,7 +15,7 @@ export const size = {
 
 export const modifier = {
   hidden: 'is-hidden',
-  inverted: 'is-inverted',
+  rotated: 'is-rotated',
   loading: 'is-loading',
   outlined: 'is-outlined',
   inverted: 'is-inverted',

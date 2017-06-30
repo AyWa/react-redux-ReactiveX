@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import Maybe from 'reusable/Maybe'
 import {modifier} from 'utilities/types'
 import './card.scss'
 
@@ -10,7 +11,8 @@ const footerClass = `${element}-footer`
 const footerItemClass = `${footerClass}-item`
 // A card contain
 // img: UI/Image
-// footer: <a />
+// footer: array of <a />
+// headerTitle: if no title => no header
 // {img, children, footer, headerTitle}
 export default class BookList extends Component {
   constructor(props) {
@@ -31,33 +33,43 @@ export default class BookList extends Component {
     const {
       img,
       children,
-      footer,
+      footer = [],
       headerTitle,
     } = this.props
-
-    const hiddenModifierClass = this.state.isClose ? modifier.hidden : ''
-    const iconModifierClass = this.state.isClose ? '' : modifier.inverted
+    const hiddenModifierClass = this.state.isClose && headerTitle ?
+      modifier.hidden : ''
+    const iconModifierClass = this.state.isClose ? '' : modifier.rotated
     return (
       <div className={element}>
-        <header className={headerClass} onClick={this.onToggle}>
-          <p className={headerTitleClass}>
-            {headerTitle}
-          </p>
-          <a className="card-header-icon">
-            <span className={`icon ${iconModifierClass}`}>
-              <i className="fa fa-angle-down" />
-            </span>
-          </a>
-        </header>
+        <Maybe cond={headerTitle}>
+          <header className={headerClass} onClick={this.onToggle}>
+            <p className={headerTitleClass}>
+              {headerTitle}
+            </p>
+            <a className="card-header-icon">
+              <span className={`icon ${iconModifierClass}`}>
+                <i className="fa fa-angle-down" />
+              </span>
+            </a>
+          </header>
+        </Maybe>
         <div className={`${imgClass} ${hiddenModifierClass}`}>
           {img}
         </div>
         <div className={`card-content ${hiddenModifierClass}`}>
           {children}
         </div>
-        <footer className={`${footerClass} ${hiddenModifierClass}`}>
-          {footer}
-        </footer>
+        <Maybe cond={footer.length !== 0}>
+          <footer className={`${footerClass} ${hiddenModifierClass}`}>
+            {footer.map(a => React.cloneElement(a, {
+                  key: a.props.children,
+                  className: footerItemClass,
+                  ...a.props,
+                })
+              )
+            }
+          </footer>
+        </Maybe>
       </div>
     )
   }
