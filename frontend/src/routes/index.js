@@ -4,11 +4,12 @@ import NotFound from 'components/Errors/404';
 import Modal from 'components/Modal'
 import Alerts from 'components/Alerts'
 import Container from './Container';
+import "styles/common.scss"
 
 export default class App extends Component {
   render() {
     return (
-      <div>
+      <div className="is-relative">
         <Switch>
           <Route path="/" component={Container} />
           <Route component={NotFound} />
