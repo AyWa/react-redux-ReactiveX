@@ -31,9 +31,9 @@ class BookList extends Component {
     })
   }
   renderFeed() {
-    return this.props.data.feed.map((repository, i) => {
+    return this.props.data.feed.map((repository) => {
       return (
-        <li key={`${repository.postedBy.login}${i}`} className="list-group-item">
+        <li key={repository.repository.name} className="list-group-item">
           <div>
             login: {repository.postedBy.login}
           </div>

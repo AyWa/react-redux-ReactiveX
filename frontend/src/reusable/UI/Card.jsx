@@ -61,13 +61,13 @@ export default class BookList extends Component {
         </div>
         <Maybe cond={footer.length !== 0}>
           <footer className={`${footerClass} ${hiddenModifierClass}`}>
-            {footer.map(a => React.cloneElement(a, {
-                  key: a.props.children,
-                  className: footerItemClass,
-                  ...a.props,
-                })
-              )
-            }
+            {footer.map(a =>
+              React.cloneElement(a, {
+                key: a.props.children,
+                className: footerItemClass,
+                ...a.props,
+              }),
+            )}
           </footer>
         </Maybe>
       </div>

@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
-import NotFound from 'components/Errors/404';
+import React, { Component } from 'react'
+import { Route, Switch } from 'react-router-dom'
+import NotFound from 'components/Errors/404'
 import Modal from 'components/Modal'
 import Alerts from 'components/Alerts'
-import Container from './Container';
-import "styles/common.scss"
+import 'styles/common.scss'
+import Container from './Container'
 
 export default class App extends Component {
   render() {
