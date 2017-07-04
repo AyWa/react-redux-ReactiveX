@@ -1,11 +1,11 @@
 @import "frontend/src/styles/variables.scss";
 @import "node_modules/bulma/sass/utilities/_all";
-@import "node_modules/bulma/sass/components/message.sass";
+@import "node_modules/bulma/sass/elements/notification.sass";
 
-.message {
+.notification {
   min-width: 230px;
 }
 
-.message:not(:last-child) {
+.notification:not(:last-child) {
   margin: 0 0 1rem 0;
 }

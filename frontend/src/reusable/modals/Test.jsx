@@ -14,6 +14,19 @@ export default () => {
             size="64x64"
           />
         }
+        footer={
+          <div className="level-left">
+            <a className="level-item">
+              <span className="icon is-small"><i className="fa fa-reply" /></span>
+            </a>
+            <a className="level-item">
+              <span className="icon is-small"><i className="fa fa-retweet" /></span>
+            </a>
+            <a className="level-item">
+              <span className="icon is-small"><i className="fa fa-heart" /></span>
+            </a>
+          </div>
+        }
       >
         <p>
           <strong>John Smith</strong> <small>@johnsmith</small> <small>31m</small>

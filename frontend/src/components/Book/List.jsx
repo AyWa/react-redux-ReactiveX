@@ -86,7 +86,6 @@ class BookList extends Component {
           isOutlined
           color={color.danger}
           onClick={_ => setAlert({
-            header: `hey dd`,
             body: 'this is a strong error',
             modifier: color.danger,
           })}

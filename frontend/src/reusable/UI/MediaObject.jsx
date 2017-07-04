@@ -12,17 +12,7 @@ export default ({left, children, footer, right}) => {
           {children}
         </div>
         <nav className="level is-mobile">
-          <div className="level-left">
-            <a className="level-item">
-              <span className="icon is-small"><i className="fa fa-reply" /></span>
-            </a>
-            <a className="level-item">
-              <span className="icon is-small"><i className="fa fa-retweet" /></span>
-            </a>
-            <a className="level-item">
-              <span className="icon is-small"><i className="fa fa-heart" /></span>
-            </a>
-          </div>
+          {footer}
         </nav>
       </div>
       <div className="media-right">

@@ -2,22 +2,12 @@ import React from 'react'
 
 import './alert.scss'
 
-export const Alert = ({modifier, dismiss, header, body}) => {
+export const Alert = ({modifier, dismiss, body}) => {
   return (
-    <article className={`message ${modifier}`}>
-      <div className="message-header">
-        <p>
-          {header}
-        </p>
-        <button
-          onClick={dismiss}
-          className="delete"
-        />
-      </div>
-      <div className="message-body">
-        {body}
-      </div>
-    </article>
+    <div className={`notification ${modifier}`}>
+      <button className="delete" onClick={dismiss} />
+      {body}
+    </div>
   )
 }
 
