@@ -22,4 +22,29 @@ export const modifier = {
   focused: 'is-focused',
 }
 
+export const grid = {
+  threeQuarter: 'is-three-quarters',
+  twoThird: 'is-two-thirds',
+  half: 'is-half',
+  oneThird: 'is-one-third',
+  oneQuarter: 'is-one-quarter',
+  offset: 'is-offeset',
+  multiline: 'is-multiline',
+  gapless: 'is-gapless',
+  narrow: 'is-narrow',
+}
+
+export const device = {
+  mobile: 'is-mobile',
+  desktop: 'is-desktop',
+}
+
+export const helper = {
+  noMargin: 'is-marginless',
+  noPadding: 'is-paddingless',
+  unSelectable: 'is-unselectable',
+  hidden: 'is-hidden',
+  fullwidth: 'is-fullwidth',
+}
+
 export default modifier

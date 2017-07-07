@@ -1,5 +1,5 @@
-import React from "react"
-import "./grid.scss"
+import React from 'react'
+import './grid.scss'
 
 const Column = ({children}) => {
   return React.cloneElement(children, {
