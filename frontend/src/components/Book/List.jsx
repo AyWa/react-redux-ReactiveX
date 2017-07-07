@@ -6,8 +6,6 @@ import { getRepository } from 'api/graphql/repository'
 import Bulma from 'components/ComponentTestDisplay/Bulma'
 import BookDetail from './Detail';
 
-console.log(Bulma);
-
 class BookList extends Component {
   renderList() {
     return this.props.books.map((book) => {
@@ -23,7 +21,10 @@ class BookList extends Component {
   renderFeed() {
     return this.props.data.feed.map((repository) => {
       return (
-        <li key={repository.repository.name} className="list-group-item">
+        <li
+          key={`${repository.repository.name}${repository.postedBy.login}`}
+          className="list-group-item"
+        >
           <div>
             login: {repository.postedBy.login}
           </div>

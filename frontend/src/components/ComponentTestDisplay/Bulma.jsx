@@ -6,7 +6,7 @@ import Tag from 'reusable/UI/Tag'
 import Progress from 'reusable/UI/Progress'
 import Card from 'reusable/UI/Card'
 import Image from 'reusable/UI/Image'
-import Grid from 'reusable/UI/Grid'
+import Grid, {Column} from 'reusable/UI/Grid'
 import {TEST} from 'utilities/modals'
 
 const footer = [
@@ -18,15 +18,15 @@ const footer = [
 export default () =>
   <div>
     <Grid>
-      <div>
+      <Column>
         <Button
           className={helper.fullwidth}
           title="loading"
           color={color.warning}
           isLoading
         />
-      </div>
-      <div>
+      </Column>
+      <Column>
         <Button
           className={helper.fullwidth}
           title="inverted disabled"
@@ -34,16 +34,16 @@ export default () =>
           isInverted
           disabled
         />
-      </div>
-      <div>
+      </Column>
+      <Column>
         <Button
           className={helper.fullwidth}
           title="focused"
           color={color.info}
           isFocused
         />
-      </div>
-      <div>
+      </Column>
+      <Column>
         <Button
           className={helper.fullwidth}
           title="test modal"
@@ -52,8 +52,8 @@ export default () =>
             modal: TEST,
           })}
         />
-      </div>
-      <div>
+      </Column>
+      <Column>
         <Button
           className={helper.fullwidth}
           title="test alert"
@@ -64,62 +64,61 @@ export default () =>
             modifier: color.danger,
           })}
         />
-      </div>
+      </Column>
     </Grid>
     <Grid>
-      <div className={grid.threeQuarter}>
+      <Column className={grid.threeQuarter}>
         I am 3/4
         <Tag
           className={helper.fullwidth}
           title="test click"
           color={color.danger}
-          onClick={e => console.log(e)}
         />
-      </div>
-      <div>
+      </Column>
+      <Column>
         So I am 1/4
         <Tag
           className={helper.fullwidth}
           title="test click"
           color={color.primary}
         />
-      </div>
+      </Column>
     </Grid>
     <Grid>
-      <div>
+      <Column>
         <Progress
           value={200}
           max={1000}
           color={color.primary}
           size={size.small}
         />
-      </div>
-      <div>
+      </Column>
+      <Column>
         <Progress
           value={50}
           max={100}
           color={color.info}
         />
-      </div>
-      <div>
+      </Column>
+      <Column>
         <Progress
           value={400}
           max={1000}
           color={color.warning}
           size={size.large}
         />
-      </div>
-      <div>
+      </Column>
+      <Column>
         <Progress
           value={90}
           max={100}
           color={color.danger}
           size={size.large}
         />
-      </div>
+      </Column>
     </Grid>
     <Grid>
-      <div>
+      <Column>
         <Card
           img={
             <Image
@@ -138,8 +137,8 @@ export default () =>
             <small>11:09 PM - 1 Jan 2016</small>
           </div>
         </Card>
-      </div>
-      <div>
+      </Column>
+      <Column>
         <Card>
           <div>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
@@ -148,8 +147,8 @@ export default () =>
             <small>11:09 PM - 1 Jan 2016</small>
           </div>
         </Card>
-      </div>
-      <div>
+      </Column>
+      <Column>
         <Card
           img={
             <Image
@@ -167,8 +166,8 @@ export default () =>
             <small>11:09 PM - 1 Jan 2016</small>
           </div>
         </Card>
-      </div>
-      <div>
+      </Column>
+      <Column>
         <Card>
           <div>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
@@ -177,6 +176,6 @@ export default () =>
             <small>11:09 PM - 1 Jan 2016</small>
           </div>
         </Card>
-      </div>
+      </Column>
     </Grid>
   </div>
