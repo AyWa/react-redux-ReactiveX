@@ -73,34 +73,27 @@ const runScript = (scriptPath, callback) => {
     // keep track of whether callback has been invoked to prevent multiple invocations
     var invoked = false;
     if (!process) {
-      console.log(`fork new process ${scriptPath}`);
+      console.log(`create process ${scriptPath}`);
       process = childProcess.fork(scriptPath);
       process.on('error', function (err) {
-          if (invoked) return;
-          invoked = true;
-          callback(err);
+        callback(err);
       });
       // execute the callback once the process has finished running
       process.on('exit', function (code) {
           console.log("exit code");
-          if (invoked) return;
-          invoked = true;
           var err = code === 0 ? null : new Error('exit code ' + code);
           callback(err);
       });
       // if kill
       process.on('close', function (code) {
         console.log("closing");
-        process = false;
-        invoked = false;
-        // runScript('./build/server.dev.bundle.js', (err) => {
-        //     if (err) console.log(`error with exit ${err}`);
-        //     console.log('finished running ./build/server.dev.bundle.js');
-        // });
       });
       // listen for errors as they may prevent the exit event from firing
     } else {
+      console.log(`kill process ${scriptPath}`);
       process.kill();
+      console.log(`recreate process ${scriptPath}`);
+      process = childProcess.fork(scriptPath);
     }
 }
 
