@@ -90,7 +90,7 @@ const frontend = {
       "process.env": {
          NODE_ENV: JSON.stringify("production"),
          __DEV__: JSON.stringify(false),
-         __API__: "192.0000000",
+         __API__: JSON.stringify("http://api.githunt.com"),
        }
     }),
     new HtmlWebpackPlugin({
@@ -151,6 +151,7 @@ const backend = {
          NODE_ENV: JSON.stringify("production"),
          __DEV__: JSON.stringify(false),
          __SERVER__: JSON.stringify(true),
+         __API__: JSON.stringify("http://api.githunt.com"),
        }
     }),
     new CopyWebpackPlugin([

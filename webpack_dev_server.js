@@ -120,7 +120,7 @@ app.use(webpackHotMiddleware(frontCompiler));
 webpackDevMiddleware(backCompiler, {
   noInfo: false,
   publicPath: webpackBackConfiguration.output.publicPath,
-  quiet: false,
+  quiet: true,
   colors: true,
   timings: true,
 })
