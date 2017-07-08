@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import {selectBook} from 'actions';
 import { graphql } from 'react-apollo';
 import { getRepository } from 'api/graphql/repository'
+import {bookSelector} from 'selectors'
 import Bulma from 'components/ComponentTestDisplay/Bulma'
 import BookDetail from './Detail';
 
@@ -60,7 +61,7 @@ const BookListQl = graphql(getRepository)(BookList)
 export default connect(
   state => (
     {
-      books: state.books,
+      books: bookSelector(state),
     }
   ),
 )(BookListQl);
