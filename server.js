@@ -25,6 +25,7 @@ const apolloClient = new ApolloClient({
 // const directory __dirname === ./build
 const viewDir = "./view"
 const frontBuild = "./frontend"
+const htmlFront = `${frontBuild}/index_front.html`
 
 // config
 const port = process.env.PORT || 8888;
@@ -74,6 +75,15 @@ app.get('*', (req, res) => {
       {
         markup,
         initialState,
+      }
+    )
+  }).catch(e => {
+    console.log("error in apollo rendering: render without data");
+    return res.status(status).render(
+      'server_index_dev',
+      {
+        markup,
+        initialState: {},
       }
     )
   });
