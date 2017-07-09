@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom'
 import NotFound from 'components/Errors/404'
 import Modal from 'components/Modal'
 import Alerts from 'components/Alerts'
+import Footer from 'components/Footer'
 import 'styles/common.scss'
 import Container from './Container'
 
@@ -16,6 +17,7 @@ export default class App extends Component {
         </Switch>
         <Modal />
         <Alerts />
+        <Footer />
       </div>
     );
   }

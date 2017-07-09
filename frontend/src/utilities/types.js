@@ -39,6 +39,12 @@ export const device = {
   desktop: 'is-desktop',
 }
 
+export const text = {
+  center: 'has-text-centered',
+  left: 'has-text-left',
+  right: 'has-text-right',
+}
+
 export const helper = {
   noMargin: 'is-marginless',
   noPadding: 'is-paddingless',
