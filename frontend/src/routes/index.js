@@ -1,6 +1,4 @@
 import React, { Component } from 'react'
-import { Route, Switch } from 'react-router-dom'
-import NotFound from 'components/Errors/404'
 import Modal from 'components/Modal'
 import Alerts from 'components/Alerts'
 import Footer from 'components/Footer'
@@ -15,10 +13,7 @@ export default class App extends Component {
     return (
       <div className={routesClass}>
         <Navbar />
-        <Switch>
-          <Route path="/" component={Container} />
-          <Route component={NotFound} />
-        </Switch>
+        <Container />
         <Modal />
         <Alerts />
         <Footer />
