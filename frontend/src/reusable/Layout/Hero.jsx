@@ -5,11 +5,11 @@ import './hero.scss'
 const element = 'hero'
 const bodyClass = `${element}-body`
 
-export default ({children}) => {
+export default ({children, color, isFluid}) => {
   return (
-    <section className={element}>
+    <section className={`${element} ${color}`}>
       <div className={bodyClass}>
-        <Container>
+        <Container isFluid={isFluid}>
           {children}
         </Container>
       </div>

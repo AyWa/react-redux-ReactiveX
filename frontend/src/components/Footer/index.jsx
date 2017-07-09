@@ -7,11 +7,11 @@ export default () => {
     <Footer>
       <div className={text.center}>
         <p>
-          <strong>Bulma</strong> by <a href="http://jgthms.com">Jeremy Thomas</a>. The source code is licensed
-          <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
-          is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC ANS 4.0</a>.
+          <strong>Refast</strong> by <a href="https://github.com/AyWa">Marc Hurabielle</a>. The source code is licensed
+          <a href="http://opensource.org/licenses/mit-license.php"> MIT</a>.
         </p>
         <p>
+          Design powerer by <strong>Bulma</strong>
           <a className="icon" href="https://github.com/jgthms/bulma">
             <i className="fa fa-github" />
           </a>

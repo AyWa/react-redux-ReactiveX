@@ -4,10 +4,10 @@ import './footer.scss'
 
 const element = 'footer'
 
-export default ({children}) => {
+export default ({children, isFluid}) => {
   return (
     <footer className={element}>
-      <Container>
+      <Container isFluid={isFluid}>
         {children}
       </Container>
     </footer>
