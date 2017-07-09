@@ -9,10 +9,11 @@ export default (props) => {
     isSubtitle,
     children,
     modifier,
+    ...otherProps
   } = props
   const element = isSubtitle ? subtitle : title
   return React.cloneElement(
     children,
-    {...props, className: `${element} ${modifier}`},
+    {...otherProps, className: `${element} ${modifier}`},
   )
 }
