@@ -1,5 +1,5 @@
 import React from 'react'
-import './grid.scss'
+import './scss/grid.scss'
 
 export const Column = ({children, className}) =>
   <div className={`${className} column`}>

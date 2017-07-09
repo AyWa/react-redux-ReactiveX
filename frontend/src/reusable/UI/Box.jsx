@@ -1,5 +1,5 @@
 import React from 'react'
-import './box.scss'
+import './scss/box.scss'
 
 export default ({children}) =>
   <div className="box">

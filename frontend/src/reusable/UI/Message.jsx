@@ -1,6 +1,6 @@
 import React from 'react'
 
-import './message.scss'
+import './scss/message.scss'
 
 export const Message = ({modifier, dismiss, header, body}) => {
   return (

@@ -1,6 +1,6 @@
 import React from 'react'
 import {modifier} from 'utilities/types'
-import './button.scss'
+import './scss/button.scss'
 
 export default (props) => {
   const {

@@ -1,5 +1,5 @@
 import React from 'react'
-import './media-object.scss'
+import './scss/media-object.scss'
 
 export default ({left, children, footer, right}) => {
   return (

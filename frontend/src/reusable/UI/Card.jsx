@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import Maybe from 'reusable/Maybe'
 import {modifier} from 'utilities/types'
-import './card.scss'
+import './scss/card.scss'
 
 const element = 'card'
 const headerClass = `${element}-header`

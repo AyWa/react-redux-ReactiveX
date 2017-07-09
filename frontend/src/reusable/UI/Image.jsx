@@ -1,5 +1,5 @@
 import React from 'react'
-import './image.scss'
+import './scss/image.scss'
 
 export default (props) => {
   const {

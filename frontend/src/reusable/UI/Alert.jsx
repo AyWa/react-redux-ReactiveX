@@ -1,6 +1,6 @@
 import React from 'react'
 
-import './alert.scss'
+import './scss/alert.scss'
 
 export const Alert = ({modifier, dismiss, body}) => {
   return (

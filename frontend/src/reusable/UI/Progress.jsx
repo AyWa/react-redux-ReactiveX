@@ -1,5 +1,5 @@
 import React from 'react'
-import './progress.scss'
+import './scss/progress.scss'
 
 export default ({value, max, color, size}) => {
   const classModifier = `progress ${color} ${size}`

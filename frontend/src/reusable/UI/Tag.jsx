@@ -2,7 +2,7 @@ import React from 'react'
 import sizeModifier from 'utilities/types'
 import Maybe from 'reusable/Maybe'
 import Button from './Button'
-import './tag.scss'
+import './scss/tag.scss'
 
 export default ({color, size, title, onClick}) => {
   return (

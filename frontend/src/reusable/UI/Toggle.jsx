@@ -1,5 +1,5 @@
 import React from 'react'
-import './toggle.scss'
+import './scss/toggle.scss'
 
 const element = 'refast-toggle'
 class Toggle extends React.Component {

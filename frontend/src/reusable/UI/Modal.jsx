@@ -1,6 +1,6 @@
 import React from 'react'
 import Button from 'reusable/UI/Button'
-import './modal.scss'
+import './scss/modal.scss'
 
 const element = 'modal'
 export const Modal = ({isActive, dismiss, children}) => {

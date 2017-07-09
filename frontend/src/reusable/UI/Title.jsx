@@ -1,5 +1,5 @@
 import React from 'react'
-import './title.scss'
+import './scss/title.scss'
 
 const title = 'title'
 const subtitle = 'subtitle'
