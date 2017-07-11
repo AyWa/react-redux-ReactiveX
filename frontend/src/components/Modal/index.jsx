@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Modal from 'reusable/UI/Modal'
 import {dismissModal} from 'actions'
 // import all the reusable modal
-import modalSelector from 'reusable/modals'
+import modalSelector from 'reusable/Modals'
 
 class ModalContainer extends Component {
   render() {
