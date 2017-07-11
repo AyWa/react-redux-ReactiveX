@@ -10,6 +10,7 @@ import Grid, {Column} from 'reusable/UI/Grid'
 import Hero from 'reusable/Layout/Hero'
 import Section from 'reusable/Layout/Section'
 import Title from 'reusable/UI/Title'
+import Level, {LevelChildren, LevelItem} from 'reusable/UI/Level'
 import {TEST} from 'utilities/modals'
 
 const footer = [
@@ -33,6 +34,19 @@ export default () =>
       </Title>
     </Hero>
     <Section>
+      <Level component="div">
+        <LevelChildren key="1">
+          <LevelItem key="1">
+            I am left item left
+          </LevelItem>
+          <LevelItem key="2">
+            I am left item left
+          </LevelItem>
+        </LevelChildren>
+        <LevelChildren isRight key="2">
+          I am right
+        </LevelChildren>
+      </Level>
       <Grid>
         <Column>
           <Button
