@@ -2,7 +2,6 @@ const path              = require('path');
 const webpack           = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 const fs                = require('fs');
 
 const nodeModules = {};
@@ -154,10 +153,6 @@ const backend = {
          __API__: JSON.stringify("http://api.githunt.com"),
        }
     }),
-    new CopyWebpackPlugin([
-      { from: 'server_index_dev.ejs', to: 'view/server_index_dev.ejs' },
-      { from: 'server_index_prod.ejs', to: 'view/server_index_prod.ejs' },
-    ]),
   ],
   externals: nodeModules
 };

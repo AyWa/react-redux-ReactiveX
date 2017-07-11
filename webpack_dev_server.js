@@ -14,7 +14,6 @@ const frontCompiler = webpack(webpackFrontConfiguration);
 const app = express();
 const backBuildDir = "./build"
 const frontBuildDir = `${backBuildDir}/frontend`
-const viewBuildDir = `${backBuildDir}/view`
 var process;
 // Delete build folder and create it again
 fse.remove(backBuildDir)
@@ -23,13 +22,6 @@ fse.remove(backBuildDir)
     fse.ensureDir(frontBuildDir)
       .then(() => {
         console.log(`create ${frontBuildDir} folder success!`)
-      })
-      .catch(err => {
-        console.error(err)
-      })
-    fse.ensureDir(viewBuildDir)
-      .then(() => {
-        console.log(`create ${viewBuildDir} folder success!`)
       })
       .catch(err => {
         console.error(err)
