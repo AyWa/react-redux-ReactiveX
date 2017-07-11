@@ -24,9 +24,7 @@ const apolloClient = new ApolloClient({
   networkInterface,
 })
 // const directory __dirname === ./build
-const viewDir = "./view"
 const frontBuild = "./frontend"
-const htmlFront = `${frontBuild}/index_front.html`
 
 // config
 const port = process.env.PORT || 8888;
