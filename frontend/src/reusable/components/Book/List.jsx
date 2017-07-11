@@ -4,7 +4,6 @@ import {selectBook} from 'actions';
 import { graphql } from 'react-apollo';
 import { getRepository } from 'api/graphql/repository'
 import {bookSelector} from 'selectors'
-import Bulma from 'components/ComponentTestDisplay/Bulma'
 import BookDetail from './Detail';
 
 class BookList extends Component {
@@ -50,7 +49,6 @@ class BookList extends Component {
         <ul className="list-group col-md-4">
           {feed ? this.renderFeed() : ''}
         </ul>
-        <Bulma />
       </div>
     )
   }

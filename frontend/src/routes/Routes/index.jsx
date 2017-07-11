@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import AddBook from 'components/Book/Add';
-import BookList from 'components/Book/List';
-import NotFound from 'components/Errors/404'
+import Landing from 'routes/Landing'
+import NotFound from 'routes/NotFound'
+import AddBook from 'routes/Add';
 
 import 'styles/common.scss'
 
@@ -13,7 +13,7 @@ export default class Container extends Component {
     return (
       <div className={element}>
         <Switch>
-          <Route exact path="/" component={BookList} />
+          <Route exact path="/" component={Landing} />
           <Route exact path="/add" component={AddBook} />
           <Route component={NotFound} />
         </Switch>

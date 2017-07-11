@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import Modal from 'components/Modal'
-import Alerts from 'components/Alerts'
-import Footer from 'components/Footer'
-import Navbar from 'components/Navbar';
+import Modal from 'reusable/components/Modal'
+import Alerts from 'reusable/components/Alerts'
+import Footer from 'reusable/components/Footer'
+import Navbar from 'reusable/components/Navbar';
 import 'styles/common.scss'
-import Container from './Container'
+import Routes from './Routes'
 
 const element = 'routes-container'
 const routesClass = `${element} is-relative`
@@ -13,7 +13,7 @@ export default class App extends Component {
     return (
       <div className={routesClass}>
         <Navbar />
-        <Container />
+        <Routes />
         <Modal />
         <Alerts />
         <Footer />
