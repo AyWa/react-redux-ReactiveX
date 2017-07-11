@@ -6,7 +6,7 @@ import prerender from 'prerender-node';
 
 // universal app
 import React from 'react';
-import { renderToString } from 'react-dom/server';
+import { renderToString, renderToStaticMarkup } from 'react-dom/server';
 import { StaticRouter as Router } from 'react-router-dom';
 import App from 'routes/index.js';
 import {
@@ -17,6 +17,7 @@ import {
 } from 'react-apollo';
 import {networkInterface} from 'api/graphql'
 import {store} from 'store'
+import ServerIndexTemplate from './ServerIndexTemplate'
 
 const apolloClient = new ApolloClient({
   ssrMode: true,
@@ -32,10 +33,6 @@ const port = process.env.PORT || 8888;
 
 // init express app
 const app = express();
-
-// init template engine ejs
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, viewDir));
 
 // Get our static request parameters
 app.use(express.static(path.join(__dirname, frontBuild)));
@@ -70,22 +67,20 @@ app.get('*', (req, res) => {
     const initialState = {
       apollo: {data},
     }
-    return res.status(status).render(
-      'server_index_dev',
-      {
-        markup,
-        initialState,
-      }
+    const htmlRendered = renderToStaticMarkup (
+      <ServerIndexTemplate markup={markup} initialState={initialState} isDev={process.env.__DEV__} />
     )
+    res.status(status)
+    res.send(`<!doctype html>\n${htmlRendered}`)
+    res.end();
   }).catch(e => {
     console.log("error in apollo rendering: render without data");
-    return res.status(status).render(
-      'server_index_dev',
-      {
-        markup,
-        initialState: {},
-      }
+    const htmlRendered = renderToStaticMarkup (
+      <ServerIndexTemplate markup={markup} initialState={{initialState: {}}} isDev={process.env.__DEV__} />
     )
+    res.status(status)
+    res.send(`<!doctype html>\n${htmlRendered}`)
+    res.end();
   });
 });
 console.log(`:) you can check :) : http://localhost: ${port}`);
