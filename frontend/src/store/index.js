@@ -1,6 +1,7 @@
 import {
   createStore,
   applyMiddleware,
+  compose,
 } from 'redux'
 import {routerMiddleware} from 'react-router-redux'
 import {createEpicMiddleware} from 'redux-observable'
@@ -23,8 +24,7 @@ const initialState = !process.env.__SERVER__ ? {
   apollo: safe(() => window.__APOLLO_STATE__.apollo, {}),
 } : {}
 middlewares.push(createEpicMiddleware(rootEpic))
-
-if (process.env.NODE_ENV === `development`) {
+if (process.env.__DEV__) {
   const { createLogger } = require(`redux-logger`);
   middlewares.push(createLogger({collapsed: true}));
 }
@@ -33,7 +33,11 @@ function configureStore(initialState) {
   const store = createStore(
     rootReducer,
     initialState,
-    applyMiddleware(...middlewares),
+    compose(
+      applyMiddleware(...middlewares),
+      (!process.env.__SERVER__ && process.env.__DEV__ && !!window.__REDUX_DEVTOOLS_EXTENSION__)
+        ? window.__REDUX_DEVTOOLS_EXTENSION__(): _ => _,
+    ),
   )
 
   if (module.hot) {
