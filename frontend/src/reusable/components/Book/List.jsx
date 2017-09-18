@@ -4,6 +4,7 @@ import {selectBook} from 'actions';
 import { graphql } from 'react-apollo';
 import { getRepository } from 'api/graphql/repository'
 import {bookSelector} from 'selectors'
+import {safe} from 'utilities'
 import BookDetail from './Detail';
 
 class BookList extends Component {
@@ -20,16 +21,18 @@ class BookList extends Component {
   }
   renderFeed() {
     return this.props.data.feed.map((repository) => {
+      const repoName = safe(() => repository.repository.name, '')
+      const repoPostedByLogin = safe(() => repository.postedBy.login, '')
       return (
         <li
-          key={`${repository.repository.name}${repository.postedBy.login}`}
+          key={`${repoName}${repoPostedByLogin}`}
           className="list-group-item"
         >
           <div>
-            login: {repository.postedBy.login}
+            login: {repoPostedByLogin}
           </div>
           <div>
-            repo: {repository.repository.name}
+            repo: {repoName}
           </div>
         </li>
       );
@@ -39,7 +42,6 @@ class BookList extends Component {
     const {
       feed,
     } = this.props.data
-
     return (
       <div>
         <ul className="list-group col-md-4">
